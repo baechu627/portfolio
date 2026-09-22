@@ -19,5 +19,6 @@ const ui = computed(() => portfolioUi[language.value])
         <a class="button button-primary" :href="`mailto:${content.profile.email}`">{{ ui.sendEmail }}</a>
       </div>
     </div>
+    <AppFooter class="contact-footer" />
   </section>
 </template>

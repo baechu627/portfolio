@@ -11,7 +11,9 @@ const ui = computed(() => portfolioUi[language.value])
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© {{ currentYear }} {{ content.profile.name }}</p>
-      <a href="#top">{{ ui.backToTop }} <span aria-hidden="true">↑</span></a>
+      <a class="back-to-top" href="#top" :aria-label="ui.backToTop">
+        <span class="arrow-glyph back-to-top-arrow" aria-hidden="true">↑</span>
+      </a>
     </div>
   </footer>
 </template>

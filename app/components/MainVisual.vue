@@ -41,7 +41,7 @@ function startEnter() {
           @click="startEnter"
         >
           <span>{{ isEntering ? ui.openingPortfolio : ui.enterPortfolio }}</span>
-          <span class="enter-arrow" aria-hidden="true">→</span>
+          <span class="enter-arrow arrow-glyph" aria-hidden="true">→</span>
         </NuxtLink>
       </div>
 

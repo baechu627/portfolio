@@ -14,6 +14,7 @@ useHead(() => ({
 <template>
   <div>
     <NuxtRouteAnnouncer />
+    <CursorFollower />
     <NuxtPage />
   </div>
 </template>

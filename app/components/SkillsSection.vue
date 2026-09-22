@@ -25,8 +25,11 @@ const ui = computed(() => portfolioUi[language.value])
           <p class="skill-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
           <h3>{{ group.title }}</h3>
           <p>{{ group.description }}</p>
-          <ul class="tag-list">
-            <li v-for="skill in group.skills" :key="skill">{{ skill }}</li>
+          <ul class="skill-lines" :aria-label="ui.technologiesAria">
+            <li v-for="skill in group.skills" :key="skill" class="skill-line-item">
+              <span>{{ skill }}</span>
+              <span class="skill-line" aria-hidden="true"><span class="skill-line-dot" /></span>
+            </li>
           </ul>
         </article>
       </div>

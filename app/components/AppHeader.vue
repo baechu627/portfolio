@@ -9,16 +9,9 @@ const ui = computed(() => portfolioUi[language.value])
 <template>
   <header class="site-header">
     <div class="container header-inner">
-      <NuxtLink class="site-logo" to="/" :aria-label="`${content.profile.name} main visual`">
-        <span aria-hidden="true">{{ content.profile.initials }}</span>
+      <NuxtLink class="site-logo" to="/" :aria-label="ui.backToHome">
+        <span>{{ content.profile.name }}</span>
       </NuxtLink>
-      <nav :aria-label="ui.mainNavigation">
-        <ul class="nav-list">
-          <li v-for="item in content.navigation" :key="item.href">
-            <a :href="item.href">{{ item.label }}</a>
-          </li>
-        </ul>
-      </nav>
     </div>
   </header>
 </template>

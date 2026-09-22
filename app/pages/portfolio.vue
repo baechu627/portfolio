@@ -22,6 +22,7 @@ useHead(() => ({
   <div id="top">
     <a class="skip-link" href="#main-content">{{ ui.skipToContent }}</a>
     <AppHeader />
+    <SectionRail />
     <Transition name="language-content" mode="out-in">
       <main id="main-content" :key="language">
         <AboutSection />
@@ -31,6 +32,5 @@ useHead(() => ({
         <ContactSection />
       </main>
     </Transition>
-    <AppFooter />
   </div>
 </template>
