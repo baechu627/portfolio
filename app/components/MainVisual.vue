@@ -12,20 +12,24 @@ function startEnter() {
   <main class="landing" aria-labelledby="landing-title">
     <section class="landing-shell">
       <div class="landing-topline">
-        <p>{{ profile.name }}</p>
-        <p>{{ profile.location }}</p>
+        <div class="landing-identity">
+          <div class="landing-meta">
+            <p>{{ profile.name }}</p>
+            <p>{{ profile.location }}</p>
+          </div>
+          <p class="landing-role">{{ profile.role }}</p>
+        </div>
       </div>
 
       <div class="landing-copy">
-        <p class="eyebrow">{{ profile.role }}</p>
         <h1 id="landing-title">
           UI/UXの視点を、<br>
           <span>実装までつなぐ。</span>
         </h1>
-        <p>{{ hero.lead }}</p>
-      </div>
+        <p class="landing-description">{{ hero.lead }}</p>
 
-      <div class="landing-footer">
+        <LanguageSwitcher />
+
         <NuxtLink
           class="enter-link"
           :class="{ 'is-entering': isEntering }"
@@ -36,6 +40,9 @@ function startEnter() {
           <span>{{ isEntering ? 'Opening Portfolio' : 'Enter Portfolio' }}</span>
           <span class="enter-arrow" aria-hidden="true">→</span>
         </NuxtLink>
+      </div>
+
+      <div class="landing-footer">
         <p>{{ hero.careerPath }}</p>
       </div>
     </section>
