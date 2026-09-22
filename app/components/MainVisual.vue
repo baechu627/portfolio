@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { hero, profile } from '~/data/portfolio'
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
 
 const isEntering = ref(false)
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
 
 function startEnter() {
   isEntering.value = true
@@ -14,19 +17,19 @@ function startEnter() {
       <div class="landing-topline">
         <div class="landing-identity">
           <div class="landing-meta">
-            <p>{{ profile.name }}</p>
-            <p>{{ profile.location }}</p>
+            <p>{{ content.profile.name }}</p>
+            <p>{{ content.profile.location }}</p>
           </div>
-          <p class="landing-role">{{ profile.role }}</p>
+          <p class="landing-role">{{ content.profile.role }}</p>
         </div>
       </div>
 
       <div class="landing-copy">
         <h1 id="landing-title">
-          UI/UXの視点を、<br>
-          <span>実装までつなぐ。</span>
+          {{ content.hero.titleLineOne }}<br>
+          <span>{{ content.hero.titleLineTwo }}</span>
         </h1>
-        <p class="landing-description">{{ hero.lead }}</p>
+        <p class="landing-description">{{ content.hero.lead }}</p>
 
         <LanguageSwitcher />
 
@@ -37,13 +40,13 @@ function startEnter() {
           :aria-busy="isEntering || undefined"
           @click="startEnter"
         >
-          <span>{{ isEntering ? 'Opening Portfolio' : 'Enter Portfolio' }}</span>
+          <span>{{ isEntering ? ui.openingPortfolio : ui.enterPortfolio }}</span>
           <span class="enter-arrow" aria-hidden="true">→</span>
         </NuxtLink>
       </div>
 
       <div class="landing-footer">
-        <p>{{ hero.careerPath }}</p>
+        <p>{{ content.hero.careerPath }}</p>
       </div>
     </section>
   </main>

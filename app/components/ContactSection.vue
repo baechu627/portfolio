@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { profile } from '~/data/portfolio'
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>
@@ -7,12 +11,12 @@ import { profile } from '~/data/portfolio'
     <div class="container contact-inner">
       <SectionHeading
         heading-id="contact-title"
-        eyebrow="05 / Contact"
-        title="一緒に、より良い体験をつくりませんか。"
-        description="採用やプロジェクトについて、お気軽にご連絡ください。"
+        :eyebrow="ui.contactEyebrow"
+        :title="ui.contactTitle"
+        :description="ui.contactDescription"
       />
       <div class="contact-links">
-        <a class="button button-primary" :href="`mailto:${profile.email}`">メールを送る</a>
+        <a class="button button-primary" :href="`mailto:${content.profile.email}`">{{ ui.sendEmail }}</a>
       </div>
     </div>
   </section>

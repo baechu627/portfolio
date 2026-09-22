@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { skillGroups } from '~/data/portfolio'
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>
@@ -7,18 +11,18 @@ import { skillGroups } from '~/data/portfolio'
     <div class="container">
       <SectionHeading
         heading-id="skills-title"
-        eyebrow="04 / Skills"
-        title="できること"
-        description="実務で使用している技術と、現在学習・探索している領域を分けて掲載しています。"
+        :eyebrow="ui.skillsEyebrow"
+        :title="ui.skillsTitle"
+        :description="ui.skillsDescription"
       />
       <div class="skills-grid">
         <article
-          v-for="group in skillGroups"
+          v-for="group in content.skillGroups"
           :key="group.title"
           class="skill-card"
           :class="{ 'skill-card-learning': group.kind === 'learning' }"
         >
-          <p class="skill-category">{{ group.kind === 'professional' ? 'Professional Experience' : 'Learning / Exploring' }}</p>
+          <p class="skill-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
           <h3>{{ group.title }}</h3>
           <p>{{ group.description }}</p>
           <ul class="tag-list">

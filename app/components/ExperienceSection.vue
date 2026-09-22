@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { experiences } from '~/data/portfolio'
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>
@@ -7,12 +11,12 @@ import { experiences } from '~/data/portfolio'
     <div class="container">
       <SectionHeading
         heading-id="experience-title"
-        eyebrow="02 / Experience"
-        title="経験"
-        description="プロダクトの背景を理解し、設計から実装・改善まで責任を持って取り組みます。"
+        :eyebrow="ui.experienceEyebrow"
+        :title="ui.experienceTitle"
+        :description="ui.experienceDescription"
       />
-      <ol class="timeline" aria-label="職務経歴">
-        <li v-for="experience in experiences" :key="`${experience.period}-${experience.role}`" class="timeline-item">
+      <ol class="timeline" :aria-label="ui.experienceAria">
+        <li v-for="experience in content.experiences" :key="`${experience.period}-${experience.role}`" class="timeline-item">
           <p class="timeline-period">{{ experience.period }}</p>
           <div class="timeline-content">
             <h3>{{ experience.role }}</h3>

@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { profile } from '~/data/portfolio'
+import { portfolioContent } from '~/data/portfolio'
 
-useHead({
-  htmlAttrs: { lang: 'ja' },
-  titleTemplate: (title) => title ? `${title} | ${profile.name}` : `${profile.name} | Frontend Engineer`,
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+
+useHead(() => ({
+  htmlAttrs: { lang: language.value },
+  titleTemplate: (title) => title ? `${title} | ${content.value.profile.name}` : `${content.value.profile.name} | ${content.value.profile.role}`,
   meta: [{ name: 'theme-color', content: '#ffffff' }],
-})
+}))
 </script>
 
 <template>

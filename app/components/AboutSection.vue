@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { about } from '~/data/portfolio'
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>
@@ -7,14 +11,14 @@ import { about } from '~/data/portfolio'
     <div class="container split-layout">
       <SectionHeading
         heading-id="about-title"
-        eyebrow="01 / About"
-        :title="about.title"
+        :eyebrow="ui.aboutEyebrow"
+        :title="ui.aboutTitle"
       />
       <div class="prose">
         <p class="lead-text">
-          {{ about.lead }}
+          {{ content.about.lead }}
         </p>
-        <p v-for="paragraph in about.paragraphs" :key="paragraph">{{ paragraph }}</p>
+        <p v-for="paragraph in content.about.paragraphs" :key="paragraph">{{ paragraph }}</p>
       </div>
     </div>
   </section>

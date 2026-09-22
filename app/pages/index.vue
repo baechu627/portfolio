@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { portfolioContent } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+
 definePageMeta({
   pageTransition: {
     name: 'portfolio-page',
@@ -6,15 +11,10 @@ definePageMeta({
   },
 })
 
-useHead({
-  title: 'Frontend Engineer',
-  meta: [
-    {
-      name: 'description',
-      content: 'BAE SUJIN — UI/UXの視点を実装までつなぐFrontend Engineer。',
-    },
-  ],
-})
+useHead(() => ({
+  title: content.value.profile.role,
+  meta: [{ name: 'description', content: content.value.hero.lead }],
+}))
 </script>
 
 <template>

@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { projects } from '~/data/portfolio'
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>
@@ -7,13 +11,13 @@ import { projects } from '~/data/portfolio'
     <div class="container">
       <SectionHeading
         heading-id="projects-title"
-        eyebrow="03 / Projects"
-        title="Case Studies"
-        description="課題、担当範囲、成果が分かる形でプロジェクトを紹介します。"
+        :eyebrow="ui.projectsEyebrow"
+        :title="ui.projectsTitle"
+        :description="ui.projectsDescription"
       />
       <div class="project-grid">
         <ProjectCard
-          v-for="(project, index) in projects"
+          v-for="(project, index) in content.projects"
           :key="project.title"
           :project="project"
           :index="index"

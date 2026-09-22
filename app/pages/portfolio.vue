@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { portfolioContent, portfolioUi } from '~/data/portfolio'
+
+const { language } = usePortfolioLanguage()
+const content = computed(() => portfolioContent[language.value])
+const ui = computed(() => portfolioUi[language.value])
+
 definePageMeta({
   pageTransition: {
     name: 'portfolio-page',
@@ -6,28 +12,25 @@ definePageMeta({
   },
 })
 
-useHead({
+useHead(() => ({
   title: 'Portfolio',
-  meta: [
-    {
-      name: 'description',
-      content: 'Vue・Nuxt・TypeScriptを中心に、使いやすく保守しやすいWeb体験をつくるフロントエンドエンジニアのポートフォリオです。',
-    },
-  ],
-})
+  meta: [{ name: 'description', content: content.value.hero.lead }],
+}))
 </script>
 
 <template>
   <div id="top">
-    <a class="skip-link" href="#main-content">本文へ移動</a>
+    <a class="skip-link" href="#main-content">{{ ui.skipToContent }}</a>
     <AppHeader />
-    <main id="main-content">
-      <AboutSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <SkillsSection />
-      <ContactSection />
-    </main>
+    <Transition name="language-content" mode="out-in">
+      <main id="main-content" :key="language">
+        <AboutSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <ContactSection />
+      </main>
+    </Transition>
     <AppFooter />
   </div>
 </template>
