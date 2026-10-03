@@ -393,28 +393,35 @@
     align-items: center;
     gap: var(--space-4);
     padding: var(--space-2) var(--space-2) var(--space-2) var(--space-5);
-    border: 2px solid var(--ink);
-    border-radius: 1rem;
+    border: 2px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent);
+    color: white;
     font-size: 0.9375rem;
     font-weight: 800;
     text-decoration: none;
     text-transform: uppercase;
-    transition: color 180ms ease, background-color 180ms ease;
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
   }
-  .enter-link:hover { background: var(--accent-soft); }
-  .enter-link:active { background: var(--line); }
+  .enter-link:hover {
+    border-color: var(--accent-dark);
+    background: var(--accent-dark);
+    transform: translateY(calc(var(--space-1) * -1));
+  }
+  .enter-link:active { transform: translateY(0) scale(0.98); }
   .enter-arrow {
     display: grid;
     width: var(--space-11);
     height: var(--space-11);
     place-items: center;
     border-radius: 50%;
-    background: var(--ink);
-    color: white;
-    transition: background-color 160ms ease, transform 160ms ease;
+    background: var(--lime);
+    color: var(--ink);
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
   }
   .enter-link:hover .enter-arrow {
-    background: var(--accent-dark);
+    background: white;
+    color: var(--accent-dark);
     transform: translateX(var(--space-1));
   }
   .enter-link:active .enter-arrow {
@@ -423,10 +430,12 @@
   .enter-link.is-entering {
     color: var(--accent-dark);
     pointer-events: none;
+    border-color: var(--accent-soft);
     background: var(--accent-soft);
   }
   .enter-link.is-entering .enter-arrow {
     background: var(--accent-dark);
+    color: white;
     transform: translateX(0.5rem);
   }
   .case-details dt {
