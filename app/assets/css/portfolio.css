@@ -248,6 +248,123 @@
   .portfolio-theme .project-dialog .text-link { margin-top: var(--space-8); }
   .portfolio-theme .footer-inner { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
+  .scene-portfolio {
+    position: relative;
+    height: 100svh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .scene-portfolio .site-header {
+    position: absolute;
+    inset: 0 0 auto;
+    border: 0;
+    background: transparent;
+  }
+  .scene-portfolio[data-scene='skills'] .site-logo,
+  .scene-portfolio[data-scene='contact'] .site-logo { color: #fff0fa; }
+  .scene-stage {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+  .scene-background,
+  .scene-background img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .scene-background img { object-fit: cover; }
+  .scene-sparkles { z-index: 0; }
+  .scene-background.is-skills::after {
+    position: absolute;
+    inset: 0;
+    background: rgb(48 35 79 / 48%);
+    content: '';
+  }
+  .scene-panel {
+    position: absolute;
+    z-index: 1;
+    inset: var(--space-20) 0 var(--space-20);
+    height: calc(100% - var(--space-20) * 2);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    outline: none;
+  }
+  .scene-panel::-webkit-scrollbar { display: none; }
+  .scene-stage .section {
+    min-height: 100%;
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+    scroll-snap-align: none;
+    --section-stack-space: var(--space-8);
+  }
+  .scene-stage #about,
+  .scene-stage #experience,
+  .scene-stage #projects,
+  .scene-stage #skills,
+  .scene-stage #contact { background: transparent; }
+  .scene-stage .section > .container { animation: none; }
+  .scene-stage #skills::before { display: none; }
+  .scene-stage .contact-inner { padding-block: var(--space-8); }
+  .scene-controls {
+    position: absolute;
+    z-index: 20;
+    right: var(--space-4);
+    bottom: var(--space-4);
+    left: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .scene-control,
+  .scene-counter {
+    padding: var(--space-2) var(--space-3);
+    background: #fff7df;
+    color: #142c4b;
+    clip-path: var(--pixel-cut);
+  }
+  .scene-control {
+    display: grid;
+    width: var(--space-11);
+    height: var(--space-11);
+    place-items: center;
+    border: 0;
+    font-size: var(--font-size-20);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .scene-control:disabled { opacity: 0.5; cursor: default; }
+  .scene-control:hover:not(:disabled) { background: #dbeafe; }
+  .scene-control:focus-visible { outline: 2px solid currentColor; outline-offset: calc(var(--space-1) * -1); }
+  .scene-counter {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--font-size-12);
+    font-weight: 700;
+  }
+  .scene-counter span { margin-left: var(--space-2); }
+  .scene-background-enter-active,
+  .scene-background-leave-active { transition: opacity 650ms ease, transform 650ms ease; }
+  .scene-background-enter-from { opacity: 0; transform: scale(1.02); }
+  .scene-background-leave-to { opacity: 0; }
+  .scene-copy-enter-active { transition: opacity 350ms ease, transform 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .scene-copy-leave-active { transition: opacity 220ms ease, transform 220ms ease; }
+  .scene-copy-enter-from { opacity: 0; transform: translateY(calc(var(--scene-direction) * var(--space-6))); }
+  .scene-copy-leave-to { opacity: 0; transform: translateY(calc(var(--scene-direction) * var(--space-4) * -1)); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene-background-enter-from,
+    .scene-copy-enter-from,
+    .scene-copy-leave-to { transform: none; }
+  }
+
   @media (min-width: 48rem) {
     .portfolio-theme .section-heading h2 { font-size: var(--font-size-48); }
     .portfolio-theme .section-heading h2:lang(en) { font-size: var(--font-size-28); }
