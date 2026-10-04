@@ -119,17 +119,17 @@ function startEnter() {
 </script>
 
 <template>
-  <main class="landing" aria-labelledby="landing-title">
+  <main class="landing" :class="{ 'is-locked': !authenticated }" aria-labelledby="landing-title">
     <picture>
       <source
         media="(max-width: 47.99rem)"
-        srcset="/images/pixel-sky-mobile.png"
+        srcset="/images/pixel-sky-mobile.webp"
         width="941"
         height="1672"
       >
       <img
         class="landing-background"
-        src="/images/pixel-sky.png"
+        src="/images/pixel-sky.webp"
         alt=""
         width="1536"
         height="1024"

@@ -1,9 +1,14 @@
 import type { PortfolioData } from '~/composables/usePortfolioContent'
 import type { LandingData } from '~/composables/useLandingContent'
 
-export default defineNuxtRouteMiddleware(async to => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  const nuxtApp = useNuxtApp()
+  // SSR already validated this request and populated the states below.
+  if (import.meta.client && nuxtApp.isHydrating && nuxtApp.payload.serverRendered) return
   const authenticated = useState('portfolio-authenticated', () => false)
   const data = useState<PortfolioData | null>('portfolio-content', () => null)
+  // Section changes only update the hash; server API/page access stays protected.
+  if (to.path === '/portfolio' && from.path === to.path && authenticated.value && data.value) return
   const request = useRequestFetch()
   const event = useRequestEvent()
   try {

@@ -17,6 +17,14 @@ const scenes = [
 const activeIndex = ref(Math.max(0, scenes.findIndex(scene => `#${scene.id}` === route.hash)))
 const scene = computed(() => scenes[activeIndex.value] ?? scenes[0])
 const sceneLabel = computed(() => content.value.navigation[activeIndex.value]?.label ?? scene.value.id)
+function warmNextBackground() {
+  const next = scenes[activeIndex.value + 1]
+  if (!next) return
+  const suffix = window.matchMedia('(max-width: 47.99rem)').matches ? '-sp' : ''
+  const image = new Image()
+  image.decoding = 'async'
+  image.src = `/images/section-bg-${next.image}${suffix}.webp`
+}
 const panel = ref<HTMLElement | null>(null)
 const direction = ref(1)
 let locked = false
@@ -142,8 +150,8 @@ useHead(() => ({
     <main id="main-content" class="scene-stage" tabindex="-1" @wheel="onWheel" @touchstart.passive="onTouchStart" @touchend.passive="onTouchEnd">
       <Transition name="scene-background">
         <picture :key="scene.id" class="scene-background" :class="{ 'is-skills': scene.id === 'skills' }" aria-hidden="true">
-          <source media="(max-width: 47.99rem)" :srcset="`/images/section-bg-${scene.image}-sp.png`" />
-          <img :src="`/images/section-bg-${scene.image}.png`" alt="" />
+          <source media="(max-width: 47.99rem)" :srcset="`/images/section-bg-${scene.image}-sp.webp`" />
+          <img :src="`/images/section-bg-${scene.image}.webp`" alt="" decoding="async" fetchpriority="high" @load="warmNextBackground" />
         </picture>
       </Transition>
       <PixelSparkles class="scene-sparkles" />
