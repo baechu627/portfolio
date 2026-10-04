@@ -143,7 +143,7 @@ function startEnter() {
           :aria-busy="isEntering || undefined"
           @click="startEnter"
         >
-          <span>{{ isEntering ? ui.openingPortfolio : ui.enterPortfolio }}</span>
+          <span>{{ ui.enterPortfolio }}</span>
           <PixelIcon name="arrow-right" class="enter-arrow" />
         </NuxtLink>
       </div>

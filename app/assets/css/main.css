@@ -30,6 +30,8 @@
     --accent-soft: #ffffff;
     --lime: #ffffff;
     --font: Inter, Avenir, "Helvetica Neue", "Noto Sans JP", sans-serif;
+    --letter-spacing-body: 0.02em;
+    --letter-spacing-title: 0.04em;
     --content: 72rem;
     --radius: 0.75rem;
     /* 2px design grid at a 16px root size; existing spacing names stay 4px-based. */
@@ -104,6 +106,7 @@
     color: var(--ink);
     font-family: var(--font);
     font-size: var(--font-size-16);
+    letter-spacing: var(--letter-spacing-body);
     line-height: 1.75;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -463,7 +466,7 @@
     font-family: "Noto Sans JP", "Noto Sans", sans-serif;
     font-weight: 700;
     font-synthesis: none;
-    letter-spacing: 0;
+    letter-spacing: var(--letter-spacing-title);
     line-height: 1.2;
     text-wrap: balance;
   }
@@ -471,7 +474,7 @@
     font-size: var(--landing-title-en-size);
     font-family: "Dela Gothic One", "Noto Sans", sans-serif;
     font-weight: 400;
-    letter-spacing: 0;
+    letter-spacing: var(--letter-spacing-title);
     line-height: 1.2;
   }
   .landing h1 span { display: block; }
@@ -774,7 +777,7 @@
   .section-heading h2 {
     margin-top: var(--space-4);
     font-size: var(--section-title-size);
-    letter-spacing: -0.045em;
+    letter-spacing: var(--letter-spacing-title);
     line-height: 1.08;
   }
   .section-description { margin-top: var(--space-5); color: var(--muted); font-size: var(--font-size-18); }
@@ -816,7 +819,7 @@
   }
   .timeline-content h3, .project-card h3, .skill-card h3 {
     font-size: var(--font-size-22);
-    letter-spacing: -0.025em;
+    letter-spacing: var(--letter-spacing-title);
     line-height: 1.3;
   }
   .company { margin-top: var(--space-1); color: var(--muted); font-weight: 650; }
@@ -879,7 +882,7 @@
   .project-card-title {
     font-size: var(--font-size-22);
     font-weight: 750;
-    letter-spacing: -0.025em;
+    letter-spacing: var(--letter-spacing-title);
     line-height: 1.3;
   }
   .project-card-arrow {

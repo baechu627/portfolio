@@ -512,7 +512,6 @@ export const portfolioUi = {
   ja: {
     languageSelection: '言語を選択',
     englishComingSoon: '英語版は準備中です',
-    openingPortfolio: 'Opening Portfolio',
     enterPortfolio: 'Enter Portfolio',
     mainNavigation: 'メインナビゲーション',
     backToHome: 'メインビジュアルへ',
@@ -546,7 +545,6 @@ export const portfolioUi = {
   en: {
     languageSelection: 'Select language',
     englishComingSoon: 'English version',
-    openingPortfolio: 'Opening Portfolio',
     enterPortfolio: 'Enter Portfolio',
     mainNavigation: 'Main navigation',
     backToHome: 'Back to home',
