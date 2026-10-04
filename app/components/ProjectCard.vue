@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Project } from '~/data/portfolio'
+import PixelIcon from '~/components/PixelIcon.vue'
 
 const props = defineProps<{
   project: Project
@@ -25,7 +26,7 @@ const emit = defineEmits<{
       </span>
       <span class="project-card-title-row">
         <span class="project-card-title">{{ project.title }}</span>
-        <span class="project-card-arrow arrow-glyph" aria-hidden="true">↗</span>
+        <PixelIcon name="modal" class="project-card-arrow" />
       </span>
     </button>
   </article>

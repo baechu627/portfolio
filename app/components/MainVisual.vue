@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { portfolioContent, portfolioUi } from '~/data/portfolio'
+import PixelIcon from '~/components/PixelIcon.vue'
 
 interface Sparkle {
   x: string
@@ -143,7 +144,7 @@ function startEnter() {
           @click="startEnter"
         >
           <span>{{ isEntering ? ui.openingPortfolio : ui.enterPortfolio }}</span>
-          <span class="enter-arrow arrow-glyph" aria-hidden="true">→</span>
+          <PixelIcon name="arrow-right" class="enter-arrow" />
         </NuxtLink>
       </div>
 

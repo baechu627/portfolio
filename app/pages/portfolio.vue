@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { portfolioContent, portfolioUi } from '~/data/portfolio'
+import PixelIcon from '~/components/PixelIcon.vue'
 import { AboutSection, ExperienceSection, ProjectsSection, SkillsSection, ContactSection } from '#components'
 
 const { language } = usePortfolioLanguage()
@@ -40,7 +41,14 @@ function navigate(index: number) {
 }
 
 function navigateToHref(href: string) {
-  navigate(scenes.findIndex(item => `#${item.id}` === href))
+  const index = scenes.findIndex(item => `#${item.id}` === href)
+  if (index === activeIndex.value) panel.value?.scrollTo({ top: 0, behavior: 'auto' })
+  else navigate(index)
+}
+
+function advanceContent(step: number) {
+  if (locked) return
+  navigate(activeIndex.value + step)
 }
 
 // Long content remains readable before a gesture advances to the next scene.
@@ -63,7 +71,7 @@ function onWheel(event: WheelEvent) {
   if (Math.sign(delta) !== Math.sign(wheelTotal)) wheelTotal = 0
   wheelTotal += delta
   if (Math.abs(wheelTotal) < 60) return
-  navigate(activeIndex.value + Math.sign(wheelTotal))
+  advanceContent(Math.sign(wheelTotal))
   wheelConsumed = true
   wheelTotal = 0
 }
@@ -83,7 +91,7 @@ function onTouchEnd(event: TouchEvent) {
   const delta = touchStartY - touch.clientY
   if (Math.abs(delta) < 60 || Math.abs(touch.clientX - touchStartX) >= Math.abs(delta)) return
   if (delta > 0 ? !touchAtBottom : !touchAtTop) return
-  if (!canScroll(panel.value, delta)) navigate(activeIndex.value + Math.sign(delta))
+  if (!canScroll(panel.value, delta)) advanceContent(Math.sign(delta))
 }
 
 function onKeydown(event: KeyboardEvent) {
@@ -93,7 +101,7 @@ function onKeydown(event: KeyboardEvent) {
     event.preventDefault()
     if (canScroll(panel.value, step)) {
       panel.value.scrollBy({ top: step * (event.key.startsWith('Page') ? panel.value.clientHeight * 0.8 : 40), behavior: 'auto' })
-    } else if (!locked) navigate(activeIndex.value + step)
+    } else if (!locked) advanceContent(step)
   }
 }
 
@@ -130,7 +138,7 @@ useHead(() => ({
 <template>
   <div id="top" class="portfolio-theme scene-portfolio" :data-scene="scene.id" :style="{ '--scene-direction': direction }" @keydown="onKeydown" @click="onAnchorClick">
     <a class="skip-link" href="#main-content">{{ ui.skipToContent }}</a>
-    <AppHeader />
+    <AppHeader @navigate="navigateToHref" />
     <SectionRail :active-section="`#${scene.id}`" @navigate="navigateToHref" />
     <main id="main-content" class="scene-stage" tabindex="-1" @wheel="onWheel" @touchstart.passive="onTouchStart" @touchend.passive="onTouchEnd">
       <Transition name="scene-background">
@@ -141,15 +149,15 @@ useHead(() => ({
       </Transition>
       <PixelSparkles class="scene-sparkles" />
       <Transition name="scene-copy" mode="out-in" @after-enter="focusScene">
-        <div :key="`${scene.id}-${language}`" ref="panel" class="scene-panel" tabindex="-1">
+        <div :key="`${scene.id}-${language}`" ref="panel" class="scene-panel" :class="{ 'is-contact': scene.id === 'contact' }" tabindex="-1">
           <component :is="scene.component" />
         </div>
       </Transition>
     </main>
     <nav class="scene-controls" :aria-label="ui.sectionNavigation">
-      <button class="scene-control arrow-glyph" type="button" :disabled="activeIndex === 0" :aria-label="language === 'ja' ? '前のセクションへ' : 'Previous section'" @click="navigate(activeIndex - 1)">↑</button>
+      <button class="scene-control" type="button" :disabled="activeIndex === 0" :aria-label="language === 'ja' ? '前のセクションへ' : 'Previous section'" @click="advanceContent(-1)"><PixelIcon name="arrow-up" /></button>
       <span class="scene-counter" aria-live="polite">{{ String(activeIndex + 1).padStart(2, '0') }} / 05 <span>{{ sceneLabel }}</span></span>
-      <button class="scene-control arrow-glyph" type="button" :disabled="activeIndex === scenes.length - 1" :aria-label="language === 'ja' ? '次のセクションへ' : 'Next section'" @click="navigate(activeIndex + 1)">↓</button>
+      <button class="scene-control" type="button" :disabled="activeIndex === scenes.length - 1" :aria-label="language === 'ja' ? '次のセクションへ' : 'Next section'" @click="advanceContent(1)"><PixelIcon name="arrow-down" /></button>
     </nav>
   </div>
 </template>

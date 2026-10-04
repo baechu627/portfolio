@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { portfolioContent, portfolioUi } from '~/data/portfolio'
+import PixelIcon from '~/components/PixelIcon.vue'
 
 const currentYear = new Date().getFullYear()
 const { language } = usePortfolioLanguage()
@@ -12,7 +13,7 @@ const ui = computed(() => portfolioUi[language.value])
     <div class="container footer-inner">
       <p>© {{ currentYear }} {{ content.profile.name }}</p>
       <a class="back-to-top" href="#top" :aria-label="ui.backToTop">
-        <span class="arrow-glyph back-to-top-arrow" aria-hidden="true">↑</span>
+        <PixelIcon name="arrow-up" class="back-to-top-arrow" />
       </a>
     </div>
   </footer>

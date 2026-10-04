@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { portfolioContent, portfolioUi } from '~/data/portfolio'
+import PixelIcon from '~/components/PixelIcon.vue'
 
 const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
@@ -16,7 +17,10 @@ const ui = computed(() => portfolioUi[language.value])
         :description="ui.contactDescription"
       />
       <div class="contact-links">
-        <a class="button button-primary" :href="`mailto:${content.profile.email}`">{{ ui.sendEmail }}</a>
+        <a class="button button-primary contact-email" :href="`mailto:${content.profile.email}`">
+          <span>{{ ui.sendEmail }}</span>
+          <PixelIcon name="mail" />
+        </a>
       </div>
     </div>
     <AppFooter class="contact-footer" />

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
+import PixelIcon from '~/components/PixelIcon.vue'
 import { portfolioContent, portfolioUi, type Project } from '~/data/portfolio'
 
 const { language } = usePortfolioLanguage()
@@ -27,7 +28,7 @@ function closeProject() {
         :title="ui.projectsTitle"
         :description="ui.projectsDescription"
       />
-      <div class="project-grid">
+      <div class="project-grid projects-overview">
         <ProjectCard
           v-for="(project, index) in content.projects"
           :key="project.title"
@@ -85,7 +86,7 @@ function closeProject() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {{ selectedProject.link.label }} <span class="arrow-glyph" aria-hidden="true">↗</span>
+            {{ selectedProject.link.label }} <PixelIcon name="arrow-up-right" />
             <span class="visually-hidden">{{ ui.newTab }}</span>
           </a>
         </div>
