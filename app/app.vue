@@ -13,7 +13,7 @@ useHead(() => ({
     { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
     {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans:wght@600;700&family=Noto+Sans+JP:wght@600;700&family=Press+Start+2P&display=swap',
+      href: 'https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans:wght@600;700&family=Noto+Sans+JP:wght@600;700&display=swap',
     },
   ],
 }))

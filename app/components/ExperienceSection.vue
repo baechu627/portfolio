@@ -12,7 +12,7 @@ const selectedExperience = ref<Experience | null>(null)
 </script>
 
 <template>
-  <section id="experience" class="section section-tinted" aria-labelledby="experience-title">
+  <section id="experience" class="section" aria-labelledby="experience-title">
     <div class="container">
       <SectionHeading
         heading-id="experience-title"

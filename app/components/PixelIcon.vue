@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ name: 'home' | 'modal' | 'mail' | 'arrow-up-right' | 'arrow-right' | 'arrow-left' | 'arrow-down' | 'arrow-up' }>()
+defineProps<{ name: 'home' | 'modal' | 'mail' | 'arrow-up-right' | 'arrow-right' | 'arrow-down' | 'arrow-up' }>()
 </script>
 
 <template>

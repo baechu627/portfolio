@@ -40,7 +40,6 @@ export type PortfolioLanguage = 'ja' | 'en'
 
 export const profile = {
   name: 'BAE SUJIN',
-  initials: 'BS',
   role: 'Frontend Engineer',
   location: 'Fukuoka, Japan',
   email: 'oomia6027@gmail.com',
@@ -51,11 +50,9 @@ export const hero = {
   titleLineTwo: '実装までつなぐ',
   lead: 'Web DesignerからDesign Engineer、Frontend Engineerへ。UI/UXの知見を活かし、Vue.js / Nuxt.js / TypeScriptで、分かりやすく保守しやすいUIを実装します。',
   careerPath: 'Web Designer → Design Engineer → Frontend Engineer',
-  focus: 'Vue.js / Nuxt.js / TypeScript',
 }
 
 export const about = {
-  title: 'デザインと開発をつなぐ\nFrontend Engineer',
   lead: 'Web Design・UI/UXの経験を基盤に、Frontend Engineeringへと専門性を広げてきました。',
   paragraphs: [
     '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた金融サービスのWebアプリケーション開発に携わっています。',
@@ -253,20 +250,14 @@ export const skillGroups: SkillGroup[] = [
   },
 ]
 
-const profileEnglish = {
-  ...profile,
-}
-
 const heroEnglish = {
   titleLineOne: 'Turning UI/UX insight',
   titleLineTwo: 'into implementation',
   lead: 'From Web Designer to Design Engineer to Frontend Engineer. I bring a UI/UX perspective to development with Vue.js / Nuxt.js / TypeScript, building clear, maintainable user interfaces.',
   careerPath: 'Web Designer → Design Engineer → Frontend Engineer',
-  focus: 'Vue.js / Nuxt.js / TypeScript',
 }
 
 const aboutEnglish = {
-  title: 'A Frontend Engineer connecting design and development',
   lead: 'My frontend engineering work builds on my background in web design and UI/UX.',
   paragraphs: [
     'I currently work as a Frontend Engineer at PayPay Card, contributing to financial service web application development with Vue.js / Nuxt.js / TypeScript.',
@@ -274,14 +265,6 @@ const aboutEnglish = {
     'I value collaborating with Product Managers, designers, and backend engineers from requirements discussions through implementation and quality review.',
   ],
 }
-
-const navigationEnglish: NavigationItem[] = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
-]
 
 const experiencesEnglish: Experience[] = [
   {
@@ -475,10 +458,10 @@ export const portfolioContent = {
     skillGroups,
   },
   en: {
-    profile: profileEnglish,
+    profile,
     hero: heroEnglish,
     about: aboutEnglish,
-    navigation: navigationEnglish,
+    navigation,
     experiences: experiencesEnglish,
     projects: projectsEnglish,
     skillGroups: skillGroupsEnglish,
