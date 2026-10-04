@@ -69,20 +69,36 @@ const { language } = usePortfolioLanguage()
 const route = useRoute()
 const authenticated = useState('portfolio-authenticated', () => false)
 const password = ref('')
+const passwordVisible = ref(false)
 const authError = ref('')
 const passwordInput = ref<HTMLInputElement | null>(null)
 const passwordLabel = computed(() => language.value === 'ja' ? 'パスワード' : 'Password')
+const passwordPlaceholder = computed(() => language.value === 'ja'
+  ? 'ここにパスワードを入力してください'
+  : 'Please enter your password here')
+const passwordToggleLabel = computed(() => language.value === 'ja'
+  ? (passwordVisible.value ? 'パスワードを隠す' : 'パスワードを表示')
+  : (passwordVisible.value ? 'Hide password' : 'Show password'))
 watch(authenticated, value => {
   if (!value) isEntering.value = false
 })
+watch(password, () => { authError.value = '' })
 
 async function submitPassword() {
-  if (isEntering.value || !password.value) return
+  if (isEntering.value) return
+  if (!password.value) {
+    authError.value = language.value === 'ja'
+      ? 'パスワードを入力してください。'
+      : 'Please enter your password.'
+    passwordInput.value?.focus()
+    return
+  }
   isEntering.value = true
   authError.value = ''
   try {
     await $fetch('/api/auth/password', { method: 'POST', body: { password: password.value } })
     password.value = ''
+    passwordVisible.value = false
     const destination = safePortfolioRedirect(route.query.redirect, route.hash)
     window.location.replace(destination === '/' ? '/portfolio' : destination)
   } catch (cause) {
@@ -176,11 +192,33 @@ function startEnter() {
           <span>{{ ui.enterPortfolio }}</span>
           <PixelIcon name="arrow-right" class="enter-arrow" />
         </NuxtLink>
-        <form v-else class="landing-access-form" :aria-busy="isEntering" @submit.prevent="submitPassword">
+        <form v-else class="landing-access-form" :aria-busy="isEntering" novalidate @submit.prevent="submitPassword">
           <label class="visually-hidden" for="portfolio-password">{{ passwordLabel }}</label>
-          <input id="portfolio-password" ref="passwordInput" v-model="password" type="password" autocomplete="current-password" :placeholder="passwordLabel" required maxlength="1024" :disabled="isEntering" :aria-invalid="!!authError" :aria-describedby="authError ? 'landing-auth-error' : undefined">
-          <p v-if="authError" id="landing-auth-error" class="landing-auth-error" role="alert">{{ authError }}</p>
-          <button class="enter-link" :class="{ 'is-entering': isEntering }" type="submit" :disabled="isEntering || !password">
+          <div class="landing-password-field">
+            <input id="portfolio-password" ref="passwordInput" v-model="password" :type="passwordVisible ? 'text' : 'password'" autocomplete="current-password" :placeholder="passwordPlaceholder" required maxlength="1024" :disabled="isEntering" :aria-invalid="!!authError" :aria-describedby="authError ? 'landing-auth-error' : undefined">
+            <button class="landing-password-toggle" type="button" :aria-label="passwordToggleLabel" :aria-pressed="passwordVisible" aria-controls="portfolio-password" :disabled="isEntering" @click="passwordVisible = !passwordVisible">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+                  <path v-if="passwordVisible" d="M2 4 4 2v8M2 10h4M10 2h4v4h-4v4h4M18 2h4v8h-4M18 6h4" />
+                  <path v-else d="M4 3v6M1.5 4.5l5 3M1.5 7.5l5-3M12 3v6M9.5 4.5l5 3M9.5 7.5l5-3M20 3v6M17.5 4.5l5 3M17.5 7.5l5-3" />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div class="landing-auth-feedback">
+            <p class="landing-auth-help">
+              <template v-if="language === 'ja'">
+                ※ パスワードが不明な場合や、入力してもアクセスできない場合は、<br>
+                ご連絡ください。
+              </template>
+              <template v-else>
+                ※ If you don’t know the password or cannot access the site,<br>
+                please get in touch.
+              </template>
+            </p>
+            <p v-if="authError" id="landing-auth-error" class="landing-auth-error" role="alert">{{ authError }}</p>
+          </div>
+          <button class="enter-link" :class="{ 'is-entering': isEntering }" type="submit" :disabled="isEntering">
             <span>{{ ui.enterPortfolio }}</span>
             <PixelIcon name="arrow-right" class="enter-arrow" />
           </button>
