@@ -7,6 +7,10 @@ const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
 const selectedExperience = ref<Experience | null>(null)
+
+function onListInteraction(event: Event) {
+  if (window.matchMedia('(max-width: 69.99rem)').matches) event.stopPropagation()
+}
 </script>
 
 <template>
@@ -18,7 +22,15 @@ const selectedExperience = ref<Experience | null>(null)
         :title="ui.experienceTitle"
         :description="ui.experienceDescription"
       />
-      <ol class="timeline experience-overview" :aria-label="ui.experienceAria">
+      <ol
+        class="timeline experience-overview"
+        :aria-label="ui.experienceAria"
+        tabindex="0"
+        @wheel="onListInteraction"
+        @touchstart="onListInteraction"
+        @touchend="onListInteraction"
+        @keydown="onListInteraction"
+      >
         <li v-for="experience in content.experiences" :key="`${experience.period}-${experience.role}`" class="timeline-item">
           <button class="experience-trigger" type="button" aria-haspopup="dialog" @click="selectedExperience = experience">
             <span class="timeline-period">{{ experience.period }}</span>
@@ -32,9 +44,18 @@ const selectedExperience = ref<Experience | null>(null)
   </section>
   <DetailModal v-if="selectedExperience" :open="!!selectedExperience" :title="selectedExperience.role" @close="selectedExperience = null">
     <template v-if="selectedExperience">
-      <p class="timeline-period">{{ selectedExperience.period }} · {{ selectedExperience.company }}</p>
-      <p>{{ selectedExperience.summary }}</p>
-      <ul class="detail-list"><li v-for="highlight in selectedExperience.highlights" :key="highlight">{{ highlight }}</li></ul>
+      <dl class="modal-facts">
+        <div><dt>{{ language === 'ja' ? '勤務先' : 'Company' }}</dt><dd>{{ selectedExperience.company }}</dd></div>
+        <div><dt>{{ language === 'ja' ? '期間' : 'Period' }}</dt><dd>{{ selectedExperience.period }}</dd></div>
+      </dl>
+      <section class="modal-content-block">
+        <h4>{{ language === 'ja' ? '概要' : 'Overview' }}</h4>
+        <p>{{ selectedExperience.summary }}</p>
+      </section>
+      <section class="modal-content-block">
+        <h4>{{ language === 'ja' ? '担当業務・経験' : 'Responsibilities & experience' }}</h4>
+        <ul class="detail-list"><li v-for="highlight in selectedExperience.highlights" :key="highlight">{{ highlight }}</li></ul>
+      </section>
     </template>
   </DetailModal>
 </template>

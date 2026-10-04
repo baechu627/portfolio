@@ -6,6 +6,7 @@ import { portfolioContent, portfolioUi, type Project } from '~/data/portfolio'
 const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
+const websiteLinkLabel = computed(() => language.value === 'ja' ? 'サイトを見る' : 'View website')
 const selectedProject = ref<Project | null>(null)
 const modalCloseButton = ref<HTMLButtonElement | null>(null)
 
@@ -28,7 +29,16 @@ function closeProject() {
         :title="ui.projectsTitle"
         :description="ui.projectsDescription"
       />
-      <div class="project-grid projects-overview">
+      <div
+        class="project-grid projects-overview"
+        role="region"
+        :aria-label="ui.projectsTitle"
+        tabindex="0"
+        @wheel.stop
+        @touchstart.stop
+        @touchend.stop
+        @keydown.stop
+      >
         <ProjectCard
           v-for="(project, index) in content.projects"
           :key="project.title"
@@ -69,16 +79,25 @@ function closeProject() {
             <span>{{ selectedProject.category }}</span>
           </div>
           <h3 id="project-dialog-title">{{ selectedProject.title }}</h3>
-          <p class="project-description">{{ selectedProject.description }}</p>
+          <p v-if="selectedProject.description" class="project-description">{{ selectedProject.description }}</p>
           <dl class="case-details">
             <div v-for="detail in selectedProject.details" :key="detail.label">
               <dt>{{ detail.label }}</dt>
-              <dd>{{ detail.text }}</dd>
+              <dd>
+                <a v-if="detail.url" class="text-link" :href="detail.url" target="_blank" rel="noopener noreferrer">
+                  {{ websiteLinkLabel }} <PixelIcon name="arrow-up-right" />
+                  <span class="visually-hidden">{{ ui.newTab }}</span>
+                </a>
+                <template v-else>{{ detail.text }}</template>
+              </dd>
             </div>
           </dl>
-          <ul class="tag-list" :aria-label="ui.technologiesAria">
+          <section v-if="selectedProject.technologies.length" class="modal-content-block">
+            <h4>{{ language === 'ja' ? '使用技術・ツール' : 'Technologies & tools' }}</h4>
+            <ul class="tag-list" :aria-label="ui.technologiesAria">
             <li v-for="technology in selectedProject.technologies" :key="technology">{{ technology }}</li>
-          </ul>
+            </ul>
+          </section>
           <a
             v-if="selectedProject.link"
             class="text-link"
@@ -86,7 +105,7 @@ function closeProject() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {{ selectedProject.link.label }} <PixelIcon name="arrow-up-right" />
+            {{ websiteLinkLabel }} <PixelIcon name="arrow-up-right" />
             <span class="visually-hidden">{{ ui.newTab }}</span>
           </a>
         </div>

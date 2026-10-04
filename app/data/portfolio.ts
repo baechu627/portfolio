@@ -14,6 +14,7 @@ export interface Experience {
 export interface ProjectDetail {
   label: string
   text: string
+  url?: string
 }
 
 export interface ProjectLink {
@@ -59,7 +60,7 @@ export const hero = {
 }
 
 export const about = {
-  title: 'デザインと開発をつなぐ、Frontend Engineer',
+  title: 'デザインと開発をつなぐ\nFrontend Engineer',
   lead: 'Web Design・UI/UXの経験を基盤に、Frontend Engineeringへと専門性を広げてきました。',
   paragraphs: [
     '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた金融サービスのWebアプリケーション開発に携わっています。',
@@ -118,7 +119,7 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    title: '金融サービスにおけるフロントエンド開発',
+    title: 'PayPay Card',
     category: 'Frontend Development',
     description: 'PayPay Cardでの実務経験を、公開可能な範囲で一般化して紹介します。内部の画面、プロジェクト名、コードは掲載していません。',
     details: [
@@ -138,7 +139,7 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Git'],
   },
   {
-    title: '財形住宅金融株式会社様 ランディングページ',
+    title: '財形住宅金融株式会社',
     category: 'Web Design / UI・UX',
     description: 'LYZON在籍時に、UI/UXデザインからコーディングまでを担当した公開可能なランディングページです。',
     details: [
@@ -158,7 +159,7 @@ export const projects: Project[] = [
     },
   },
   {
-    title: 'LYZON Design',
+    title: 'LYZON',
     category: 'Web Design / SVG Illustration',
     description: 'LYZON DesignのWebサイトで、ページデザインの一部とイラスト用SVGファイルの制作に参加しました。',
     details: [
@@ -178,7 +179,7 @@ export const projects: Project[] = [
     },
   },
   {
-    title: 'イオンフィナンシャルサービス株式会社様 CMS構築',
+    title: 'イオンフィナンシャルサービス株式会社',
     category: 'CMS Construction / Sitecore',
     description: 'LYZON在籍時に参加した、クレジットカード利用促進キャンペーンサイトおよびコーポレートサイトのCMS構築プロジェクトです。',
     details: [
@@ -198,7 +199,25 @@ export const projects: Project[] = [
     },
   },
   {
-    title: 'このポートフォリオサイト',
+    title: 'その他の運用案件',
+    category: 'Website Operations',
+    description: '',
+    details: [
+      {
+        label: '東京タワー',
+        text: 'https://www.tokyotower.co.jp/',
+        url: 'https://www.tokyotower.co.jp/',
+      },
+      {
+        label: 'SOMPOホールディングス',
+        text: 'https://www.sompo-hd.com/',
+        url: 'https://www.sompo-hd.com/',
+      },
+    ],
+    technologies: [],
+  },
+  {
+    title: 'Personal Portfolio',
     category: 'Personal Project',
     description: 'Frontend Engineerとしての考え方と実装品質を伝えるために制作した、one-pageポートフォリオです。',
     details: [
@@ -321,7 +340,7 @@ const experiencesEnglish: Experience[] = [
 
 const projectsEnglish: Project[] = [
   {
-    title: 'Frontend development for a financial service',
+    title: 'PayPay Card',
     category: 'Frontend Development',
     description: 'A generalized overview of my professional experience at PayPay Card within the scope that can be shared publicly. Internal screens, project names, and source code are not included.',
     details: [
@@ -341,7 +360,7 @@ const projectsEnglish: Project[] = [
     technologies: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Git'],
   },
   {
-    title: 'Zaijukin landing page',
+    title: 'Zaijukin',
     category: 'Web Design / UI/UX',
     description: 'A publicly available landing page for which I handled the UI/UX design through coding while at LYZON.',
     details: [
@@ -361,7 +380,7 @@ const projectsEnglish: Project[] = [
     },
   },
   {
-    title: 'LYZON Design',
+    title: 'LYZON',
     category: 'Web Design / SVG Illustration',
     description: 'I contributed to part of the page design and the production of SVG illustration files for the LYZON Design website.',
     details: [
@@ -381,7 +400,7 @@ const projectsEnglish: Project[] = [
     },
   },
   {
-    title: 'AEON Financial Service CMS construction',
+    title: 'AEON Financial Service',
     category: 'CMS Construction / Sitecore',
     description: 'A CMS construction project for a credit card promotion campaign site and corporate site that I joined while at LYZON.',
     details: [
@@ -401,7 +420,25 @@ const projectsEnglish: Project[] = [
     },
   },
   {
-    title: 'This portfolio website',
+    title: 'Other website operations',
+    category: 'Website Operations',
+    description: '',
+    details: [
+      {
+        label: 'Tokyo Tower',
+        text: 'https://www.tokyotower.co.jp/',
+        url: 'https://www.tokyotower.co.jp/',
+      },
+      {
+        label: 'SOMPO Holdings',
+        text: 'https://www.sompo-hd.com/',
+        url: 'https://www.sompo-hd.com/',
+      },
+    ],
+    technologies: [],
+  },
+  {
+    title: 'Personal Portfolio',
     category: 'Personal Project',
     description: 'A one-page portfolio built to communicate my approach and implementation quality as a Frontend Engineer.',
     details: [
@@ -482,7 +519,7 @@ export const portfolioUi = {
     sectionNavigation: 'セクションナビゲーション',
     skipToContent: '本文へ移動',
     aboutEyebrow: '01 / About',
-    aboutTitle: 'デザインと開発をつなぐ、Frontend Engineer',
+    aboutTitle: 'デザインと開発をつなぐ\nFrontend Engineer',
     experienceEyebrow: '02 / Experience',
     experienceTitle: '経験',
     experienceDescription: 'プロダクトの背景を理解し、設計から実装・改善まで責任を持って取り組みます。',
@@ -497,7 +534,7 @@ export const portfolioUi = {
     professionalExperience: 'Professional Experience',
     learningExploring: 'Learning / Exploring',
     contactEyebrow: '05 / Contact',
-    contactTitle: '一緒に、より良い体験をつくりませんか。',
+    contactTitle: '一緒に、より良い体験をつくりませんか',
     contactDescription: '採用やプロジェクトについて、\nお気軽にご連絡ください。',
     sendEmail: 'メールを送る',
     backToTop: 'ページ上部へ',
@@ -531,7 +568,7 @@ export const portfolioUi = {
     professionalExperience: 'Professional Experience',
     learningExploring: 'Learning / Exploring',
     contactEyebrow: '05 / Contact',
-    contactTitle: 'Let’s create better experiences together.',
+    contactTitle: 'Let’s create better experiences together',
     contactDescription: 'Feel free to get in touch about opportunities or projects.',
     sendEmail: 'Send an email',
     backToTop: 'Back to top',

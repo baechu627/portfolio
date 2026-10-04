@@ -38,10 +38,13 @@ const detailsOpen = ref(false)
     </div>
   </section>
   <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="ui.skillsTitle" @close="detailsOpen = false">
-    <div v-for="group in content.skillGroups" :key="group.title">
+    <section v-for="group in content.skillGroups" :key="group.title" class="modal-content-block">
       <h4>{{ group.title }}</h4>
-      <p>{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
+      <p class="modal-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
+      <ul class="tag-list" :aria-label="ui.technologiesAria">
+        <li v-for="skill in group.skills" :key="skill">{{ skill }}</li>
+      </ul>
       <p>{{ group.description }}</p>
-    </div>
+    </section>
   </DetailModal>
 </template>

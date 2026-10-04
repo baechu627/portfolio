@@ -7,6 +7,9 @@ const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
 const detailsOpen = ref(false)
+const detailHeadings = computed(() => language.value === 'ja'
+  ? ['現在の仕事', 'UI実装で大切にしていること', 'チームとの連携']
+  : ['Current work', 'My approach to UI implementation', 'Team collaboration'])
 </script>
 
 <template>
@@ -25,6 +28,10 @@ const detailsOpen = ref(false)
     </div>
   </section>
   <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="ui.aboutTitle" @close="detailsOpen = false">
-    <p v-for="paragraph in content.about.paragraphs" :key="paragraph">{{ paragraph }}</p>
+    <p class="modal-intro">{{ content.about.lead }}</p>
+    <section v-for="(paragraph, index) in content.about.paragraphs" :key="paragraph" class="modal-content-block">
+      <h4 v-if="detailHeadings[index]">{{ detailHeadings[index] }}</h4>
+      <p>{{ paragraph }}</p>
+    </section>
   </DetailModal>
 </template>
