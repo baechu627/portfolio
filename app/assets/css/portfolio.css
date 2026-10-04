@@ -79,12 +79,34 @@
   }
   .portfolio-theme .section-rail {
     right: var(--space-5);
-    padding: var(--space-3);
-    border: 2px solid var(--ink);
-    background: var(--accent-soft);
+    padding: 0;
+    border: 0;
+    background: transparent;
   }
-  .portfolio-theme .section-rail-link::before { width: 2px; }
-  .portfolio-theme .section-rail-link.is-active::before { width: var(--space-2); }
+  .portfolio-theme .section-rail-link { padding-inline-start: var(--space-4); }
+  .portfolio-theme .section-rail-link::before {
+    top: 50%;
+    bottom: auto;
+    width: var(--space-2);
+    height: var(--space-2);
+    clip-path: polygon(2px 0, calc(100% - 2px) 0, calc(100% - 2px) 2px, 100% 2px, 100% calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 100%, 2px 100%, 2px calc(100% - 2px), 0 calc(100% - 2px), 0 2px, 2px 2px);
+    background: currentColor;
+    transform: translateY(-50%) scale(0);
+    transition: transform 180ms ease;
+    content: '';
+  }
+  .portfolio-theme .section-rail-link.is-active::before {
+    width: var(--space-2);
+    background: currentColor;
+    transform: translateY(-50%) scale(1);
+  }
+  .scene-portfolio[data-scene='skills'] .section-rail,
+  .scene-portfolio[data-scene='contact'] .section-rail {
+    --ink: #fff0fa;
+    --muted: #fff0fa;
+    --accent-dark: #fff0fa;
+    --accent: #fff0fa;
+  }
 
   .portfolio-theme .section-heading h2 {
     color: var(--accent-soft);
@@ -172,8 +194,15 @@
     min-height: 0;
     transition: background-color 160ms ease;
   }
+  /* Tint only the card surface; text and pixel frames stay fully opaque. */
+  .portfolio-theme .timeline-item,
+  .portfolio-theme .project-card {
+    background: color-mix(in srgb, var(--accent-soft) 55%, transparent);
+  }
   .portfolio-theme .project-card:hover,
-  .portfolio-theme .project-card:focus-within { background: var(--panel-hover); }
+  .portfolio-theme .project-card:focus-within {
+    background: color-mix(in srgb, var(--panel-hover) 72%, transparent);
+  }
   .portfolio-theme .project-card-trigger {
     min-height: var(--space-16);
     justify-content: center;
@@ -377,6 +406,9 @@
     .portfolio-theme #about .section-heading h2:lang(en) { font-size: var(--font-size-24); }
   }
   @media (min-width: 70rem) {
+    /* The right-hand section rail replaces bottom navigation on desktop. */
+    .scene-controls { display: none; }
+
     /* Reserve space beside the content for the fixed section navigation. */
     .portfolio-theme .section > .container {
       width: min(100% - var(--space-44) * 2, var(--content));

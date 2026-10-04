@@ -141,16 +141,16 @@
     z-index: 1000;
     top: 0;
     left: 0;
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    background: rgb(43 154 104 / 22%);
+    width: var(--space-8);
+    height: var(--space-8);
+    background: url('/images/pixel-cursor-star.png') center / contain no-repeat;
+    image-rendering: pixelated;
     opacity: 0;
     pointer-events: none;
     will-change: transform;
-    transition: opacity 180ms ease, background-color 180ms ease;
+    transition: opacity 180ms ease;
   }
-  .cursor-follower.is-visible { opacity: 0.85; }
+  .cursor-follower.is-visible { opacity: 1; }
 
   .skip-link {
     position: fixed;

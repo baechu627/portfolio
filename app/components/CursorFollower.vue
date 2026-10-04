@@ -5,13 +5,29 @@ const cursor = ref<HTMLSpanElement | null>(null)
 let animationFrame = 0
 let pointerX = 0
 let pointerY = 0
+let displayedX = 0
+let displayedY = 0
+let lastFrameAt = 0
+let initialized = false
+const followDelayMs = 100
 
-function renderCursor() {
-  if (cursor.value) {
-    cursor.value.style.transform = `translate3d(${pointerX - 10}px, ${pointerY - 10}px, 0)`
-    cursor.value.classList.add('is-visible')
-  }
+function renderCursor(timestamp: number) {
   animationFrame = 0
+  if (!cursor.value) return
+
+  // Time-based easing keeps the trailing effect consistent across refresh rates.
+  const elapsed = Math.min(timestamp - lastFrameAt, 64)
+  lastFrameAt = timestamp
+  const easing = 1 - Math.exp(-elapsed / followDelayMs)
+  displayedX += (pointerX - displayedX) * easing
+  displayedY += (pointerY - displayedY) * easing
+  const settled = Math.hypot(pointerX - displayedX, pointerY - displayedY) < 0.1
+  if (settled) {
+    displayedX = pointerX
+    displayedY = pointerY
+  }
+  cursor.value.style.transform = `translate3d(${displayedX}px, ${displayedY}px, 0) translate(-50%, -50%)`
+  if (!settled) animationFrame = requestAnimationFrame(renderCursor)
 }
 
 function handlePointerMove(event: PointerEvent) {
@@ -20,7 +36,16 @@ function handlePointerMove(event: PointerEvent) {
   pointerX = event.clientX
   pointerY = event.clientY
 
+  if (!initialized) {
+    displayedX = pointerX
+    displayedY = pointerY
+    initialized = true
+    if (cursor.value) cursor.value.style.transform = `translate3d(${displayedX}px, ${displayedY}px, 0) translate(-50%, -50%)`
+  }
+  cursor.value?.classList.add('is-visible')
+
   if (!animationFrame) {
+    lastFrameAt = performance.now()
     animationFrame = requestAnimationFrame(renderCursor)
   }
 }
@@ -28,6 +53,9 @@ function handlePointerMove(event: PointerEvent) {
 function handlePointerLeave(event: PointerEvent) {
   if (!event.relatedTarget) {
     cursor.value?.classList.remove('is-visible')
+    if (animationFrame) cancelAnimationFrame(animationFrame)
+    animationFrame = 0
+    initialized = false
   }
 }
 
