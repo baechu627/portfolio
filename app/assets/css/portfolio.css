@@ -158,8 +158,8 @@
     transform: none;
   }
   .portfolio-theme :is(.button, .modal-close, .back-to-top):focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: calc(var(--space-2) * -1);
+    background: var(--ink);
+    color: #ffffff;
   }
   .portfolio-theme .back-to-top {
     width: var(--space-9);
@@ -230,8 +230,7 @@
   }
   .portfolio-theme .project-card-title { flex: 1; }
   .portfolio-theme .project-card-trigger:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: var(--space-2);
+    background: var(--panel-hover);
   }
   .portfolio-theme .tag-list li,
   .portfolio-theme .case-details { border-width: 2px; }
@@ -321,8 +320,8 @@
   }
   .header-language-switcher button[aria-pressed='true'] { color: #ffffff; }
   .header-language-switcher button:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: calc(var(--space-1) * -1);
+    background: var(--ink);
+    color: #ffffff;
   }
   .scene-stage {
     position: relative;
@@ -388,8 +387,6 @@
     transition: background-color 180ms ease, color 180ms ease;
   }
   .portfolio-theme :is(.summary-link, .text-link):focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: calc(var(--space-2) * -1);
     background: #ffffff;
     color: var(--ink);
   }
@@ -455,8 +452,7 @@
     cursor: pointer;
   }
   .experience-trigger:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: var(--space-2);
+    background: var(--panel-hover);
   }
   .experience-role { font-size: var(--font-size-20); font-weight: 700; line-height: 1.4; }
   .experience-detail-label { font-size: var(--font-size-12); margin-top: var(--space-3); }
@@ -797,7 +793,7 @@
   }
   .scene-control:disabled { opacity: 0.5; cursor: default; }
   .scene-control:hover:not(:disabled) { background: #ffffff; }
-  .scene-control:focus-visible { outline: 2px solid currentColor; outline-offset: calc(var(--space-1) * -1); }
+  .scene-control:focus-visible { background: var(--ink); color: #ffffff; }
   .scene-counter {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: var(--font-size-12);

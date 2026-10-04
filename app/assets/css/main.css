@@ -88,7 +88,12 @@
   }
 
   a { color: inherit; text-underline-offset: 0.25em; }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  :focus { outline: none; }
+  :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+    background-color: #ffffff;
+    color: var(--ink);
+  }
+  :is(a, button, input, select, textarea) { -webkit-tap-highlight-color: transparent; }
   ::selection { background: var(--lime); color: var(--ink); }
 }
 
@@ -541,8 +546,8 @@
   }
   .landing .language-switcher button[aria-pressed='true'] { color: #fff; }
   .landing .language-switcher button:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: calc(var(--space-1) * -1);
+    background: var(--ink);
+    color: #ffffff;
   }
   .contact-links {
     display: flex;
@@ -635,7 +640,7 @@
   }
   .landing-access-form input::placeholder { color: var(--ink); opacity: 1; }
   .landing-access-form input:focus::placeholder { color: transparent; }
-  .landing-access-form input:focus-visible { outline: 2px solid var(--ink); outline-offset: var(--space-half); }
+  .landing-access-form input:focus { background: rgb(255 255 255 / 32%); }
   .landing-password-toggle {
     position: absolute;
     top: 50%;
@@ -665,7 +670,7 @@
   .landing-password-toggle svg { display: block; width: 24px; height: 12px; }
   .landing-password-toggle:hover:not(:disabled) span,
   .landing-password-toggle:focus-visible span { background: #ffffff; color: var(--ink); }
-  .landing-password-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+  .landing-password-toggle:focus-visible { background: transparent; }
   .landing-password-toggle:disabled { cursor: default; }
   .landing-access-form .enter-link { cursor: pointer; }
   .landing-access-form .enter-link:disabled { cursor: default; }
@@ -673,8 +678,8 @@
   .landing-auth-feedback { display: grid; gap: var(--space-2); width: 100%; }
   .landing-auth-help { color: var(--ink); font-size: var(--font-size-12); font-weight: 600; line-height: 1.6; text-align: center; }
   .enter-link:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: calc(var(--space-2) * -1);
+    background: var(--ink);
+    color: #ffffff;
   }
   .enter-link:active { transform: translateY(0) scale(0.98); }
   .enter-arrow {
