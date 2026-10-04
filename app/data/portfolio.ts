@@ -53,6 +53,12 @@ export const hero = {
 }
 
 export const about = {
+  introduction: 'デザインと開発をつなぐ、フロントエンドエンジニアのぺです！',
+  personalDetails: [
+    { label: '呼び名', text: 'ぺさん' },
+    { label: '出身', text: '韓国・大邱（テグ）' },
+    { label: '趣味', text: 'PCゲーム（Steam）・イラスト制作' },
+  ],
   summaryBreakAfter: '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた',
   lead: 'Web Design・UI/UXの経験を基盤に、Frontend Engineeringへと専門性を広げてきました。',
   paragraphs: [
@@ -259,6 +265,12 @@ const heroEnglish = {
 }
 
 const aboutEnglish = {
+  introduction: 'Hi, I’m Sujin, a frontend engineer connecting design and development!',
+  personalDetails: [
+    { label: 'Nickname', text: 'Pe-san' },
+    { label: 'Hometown', text: 'Daegu, South Korea' },
+    { label: 'Hobbies', text: 'PC games (Steam) · Illustration' },
+  ],
   summaryBreakAfter: '',
   lead: 'My frontend engineering work builds on my background in web design and UI/UX.',
   paragraphs: [

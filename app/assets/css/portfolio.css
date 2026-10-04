@@ -583,6 +583,76 @@
   .detail-dialog h3 { padding-right: var(--space-12); }
   .detail-dialog-content { margin-top: var(--space-8); line-height: 1.8; }
   .detail-dialog-content > * + * { margin-top: var(--space-4); }
+  .about-profile-header { display: grid; place-items: center; margin-bottom: var(--space-1); }
+  .about-profile-reading { margin-top: var(--space-4); font-size: var(--font-size-12); font-weight: 600; line-height: 1.4; color: var(--muted); }
+  .about-profile-avatar {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #e5f3ff;
+  }
+  .about-profile-avatar img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 180%;
+    max-width: none;
+    height: auto;
+    transform: translateX(-50%);
+    image-rendering: pixelated;
+  }
+  .portfolio-theme.about-profile-dialog h3 { padding-right: 0; text-align: center; }
+  .about-profile-dialog .detail-dialog-content { margin-top: var(--space-2); }
+  .about-profile-role { font-size: var(--font-size-14); text-align: center; color: var(--muted); }
+  .about-personal-details {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: rgb(20 44 75 / 4%);
+  }
+  .about-personal-details > div {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .about-personal-details dt { font-size: var(--font-size-12); font-weight: 700; color: var(--muted); }
+  .about-personal-details dd { font-size: var(--font-size-14); line-height: 1.6; white-space: pre-line; }
+  .portfolio-theme.about-profile-dialog .modal-intro { white-space: pre-line; line-height: 1.8; }
+  .portfolio-theme.about-profile-dialog .about-personal-details + .modal-content-block {
+    border-top: 0;
+  }
+  @media (max-width: 47.99rem) {
+    .about-profile-avatar { width: 128px; height: 128px; }
+  }
+  .about-greeting-intro {
+    display: grid;
+    place-items: center;
+    min-height: 16rem;
+    text-align: center;
+  }
+  .about-greeting-intro p {
+    font-family: "Noto Sans JP", "Noto Sans", sans-serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: var(--letter-spacing-title);
+  }
+  .about-greeting-enter-active,
+  .about-greeting-leave-active { transition: opacity 140ms ease, transform 140ms ease; }
+  .about-greeting-enter-from { opacity: 0; transform: translateY(8px); }
+  .about-greeting-leave-to { opacity: 0; transform: translateY(-8px); }
+  .about-intro-content { animation: about-content-reveal 220ms ease both; }
+  @keyframes about-content-reveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .about-intro-content { animation: none; }
+    .about-greeting-enter-active,
+    .about-greeting-leave-active { transition: none; }
+  }
   /* Modal hierarchy: introduction, labelled facts, then separated content blocks. */
   .project-dialog h3 {
     padding-right: var(--space-12);

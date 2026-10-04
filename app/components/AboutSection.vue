@@ -32,8 +32,21 @@ const detailHeadings = computed(() => language.value === 'ja'
       </div>
     </div>
   </section>
-  <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="ui.aboutTitle" @close="detailsOpen = false">
-    <p class="modal-intro">{{ content.about.lead }}</p>
+  <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="content.profile.name" greeting-intro @close="detailsOpen = false">
+    <template #profile>
+      <div class="about-profile-avatar">
+        <img src="/images/about-profile.webp" width="640" height="640" decoding="async" :alt="language === 'ja' ? 'プロフィール用のピクセルアートキャラクター' : 'Pixel-art profile character'">
+      </div>
+      <p class="about-profile-reading" lang="ja">ぺ　スジン</p>
+    </template>
+    <p class="about-profile-role">{{ content.profile.role }} · {{ content.profile.location }}</p>
+    <p class="modal-intro">{{ content.about.introduction }}</p>
+    <dl class="about-personal-details">
+      <div v-for="detail in content.about.personalDetails" :key="detail.label">
+        <dt>{{ detail.label }}</dt>
+        <dd>{{ detail.text }}</dd>
+      </div>
+    </dl>
     <section v-for="(paragraph, index) in content.about.paragraphs" :key="paragraph" class="modal-content-block">
       <h4 v-if="detailHeadings[index]">{{ detailHeadings[index] }}</h4>
       <p>{{ paragraph }}</p>
