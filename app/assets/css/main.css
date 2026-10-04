@@ -1052,6 +1052,35 @@
     background: transparent;
   }
   .contact-section .footer-inner { min-height: var(--space-16); }
+  #about,
+  #experience,
+  #projects,
+  #skills,
+  #contact {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  #about { background-image: url('/images/section-bg-1.png'); }
+  #experience { background-image: url('/images/section-bg-2.png'); }
+  #projects { background-image: url('/images/section-bg-3.png'); }
+  #skills { background-image: url('/images/section-bg-4.png'); }
+  #contact {
+    background-color: #14264c;
+    background-image: url('/images/section-bg-5.png');
+    color: #fff;
+  }
+  #contact .section-heading .eyebrow,
+  #contact .section-description,
+  #contact .footer-inner { color: #fff; }
+  #contact .site-footer { border-top-color: rgb(255 255 255 / 40%); }
+  @media (max-width: 47.99rem) {
+    #about { background-image: url('/images/section-bg-1-sp.png'); }
+    #experience { background-image: url('/images/section-bg-2-sp.png'); }
+    #projects { background-image: url('/images/section-bg-3-sp.png'); }
+    #skills { background-image: url('/images/section-bg-4-sp.png'); }
+    #contact { background-image: url('/images/section-bg-5-sp.png'); }
+  }
   .site-footer {
     border-top: 1px solid var(--line);
     background: #f8fbf9;
