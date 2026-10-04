@@ -50,8 +50,8 @@ export const profile = {
 }
 
 export const hero = {
-  titleLineOne: 'UI/UXの視点を、',
-  titleLineTwo: '実装までつなぐ。',
+  titleLineOne: 'UI/UXの視点を',
+  titleLineTwo: '実装までつなぐ',
   lead: 'Web DesignerからDesign Engineer、Frontend Engineerへ。UI/UXの知見を活かし、Vue.js / Nuxt.js / TypeScriptで、利用者にとって分かりやすく継続的に改善できるUIを実装します。',
   careerPath: 'Web Designer → Design Engineer → Frontend Engineer',
   focus: 'Vue.js / Nuxt.js / TypeScript',
@@ -254,7 +254,7 @@ const profileEnglish = {
 
 const heroEnglish = {
   titleLineOne: 'Turning UI/UX insight',
-  titleLineTwo: 'into implementation.',
+  titleLineTwo: 'into implementation',
   lead: 'From Web Designer to Design Engineer to Frontend Engineer. I bring a UI/UX perspective to Vue.js / Nuxt.js / TypeScript development, building interfaces that are clear for users and ready for continuous improvement.',
   careerPath: 'Web Designer → Design Engineer → Frontend Engineer',
   focus: 'Vue.js / Nuxt.js / TypeScript',
