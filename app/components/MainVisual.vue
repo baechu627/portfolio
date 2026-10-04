@@ -67,17 +67,6 @@ const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
 
-useHead({
-  link: [
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600&family=Noto+Sans+JP:wght@600&family=Press+Start+2P&display=swap',
-    },
-  ],
-})
-
 function startEnter() {
   isEntering.value = true
 }

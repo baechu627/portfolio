@@ -19,7 +19,7 @@ useHead(() => ({
 </script>
 
 <template>
-  <div id="top">
+  <div id="top" class="portfolio-theme">
     <a class="skip-link" href="#main-content">{{ ui.skipToContent }}</a>
     <AppHeader />
     <SectionRail />

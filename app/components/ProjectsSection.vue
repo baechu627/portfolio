@@ -43,7 +43,7 @@ function closeProject() {
     <Transition name="project-modal">
       <div
         v-if="selectedProject"
-        class="project-modal"
+        class="project-modal portfolio-theme"
         role="presentation"
         @click.self="closeProject"
         @keydown.esc="closeProject"

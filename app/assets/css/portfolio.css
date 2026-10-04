@@ -1,0 +1,270 @@
+@layer components {
+  /* Shared with the teleported case-study modal. */
+  .portfolio-theme {
+    --ink: #142c4b;
+    --muted: #243d5b;
+    --accent: #142c4b;
+    --accent-dark: #0c2039;
+    --accent-soft: #fff7df;
+    --lime: #fff7df;
+    --line: #142c4b;
+    --panel-hover: #dbeafe;
+    --pixel-frame: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Cpath%20fill%3D%22%23142c4b%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8%200H28V4H32V8H36V28H32V32H28V36H8V32H4V28H0V8H4V4H8Z%20M10%202H26V6H30V10H34V26H30V30H26V34H10V30H6V26H2V10H6V6H10Z%22%2F%3E%3C%2Fsvg%3E");
+    --pixel-frame-cut: polygon(8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px), 0 8px, 4px 8px, 4px 4px, 8px 4px);
+    --font: "Noto Sans JP", "Noto Sans", sans-serif;
+    --pixel-cut: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 4px 4px);
+    color: var(--ink);
+    font-family: var(--font);
+    font-weight: 600;
+  }
+
+  /* Section palettes follow the five sky backgrounds. */
+  .portfolio-theme #about {
+    --ink: #342b58;
+    --muted: #443866;
+    --accent: #342b58;
+    --accent-dark: #241c40;
+    --accent-soft: #fff0f4;
+    --line: #342b58;
+    --panel-hover: #f9ddeb;
+    --pixel-frame: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Cpath%20fill%3D%22%23342b58%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8%200H28V4H32V8H36V28H32V32H28V36H8V32H4V28H0V8H4V4H8Z%20M10%202H26V6H30V10H34V26H30V30H26V34H10V30H6V26H2V10H6V6H10Z%22%2F%3E%3C%2Fsvg%3E");
+  }
+  .portfolio-theme #experience {
+    --ink: #123d60;
+    --muted: #163d55;
+    --accent: #123d60;
+    --accent-dark: #0d2d49;
+    --accent-soft: #eefaff;
+    --line: #123d60;
+    --panel-hover: #d3efff;
+    --pixel-frame: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Cpath%20fill%3D%22%23123d60%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8%200H28V4H32V8H36V28H32V32H28V36H8V32H4V28H0V8H4V4H8Z%20M10%202H26V6H30V10H34V26H30V30H26V34H10V30H6V26H2V10H6V6H10Z%22%2F%3E%3C%2Fsvg%3E");
+  }
+  .portfolio-theme #projects,
+  .portfolio-theme.project-modal {
+    --ink: #4c2a22;
+    --muted: #553027;
+    --accent: #4c2a22;
+    --accent-dark: #47231c;
+    --accent-soft: #fff3d8;
+    --line: #4c2a22;
+    --panel-hover: #ffe2b5;
+    --pixel-frame: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Cpath%20fill%3D%22%234c2a22%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8%200H28V4H32V8H36V28H32V32H28V36H8V32H4V28H0V8H4V4H8Z%20M10%202H26V6H30V10H34V26H30V30H26V34H10V30H6V26H2V10H6V6H10Z%22%2F%3E%3C%2Fsvg%3E");
+  }
+  .portfolio-theme #skills {
+    --ink: #30234f;
+    --muted: #45365e;
+    --accent: #30234f;
+    --accent-dark: #211637;
+    --accent-soft: #fff0fa;
+    --line: #fff0fa;
+    --sky-shade: rgb(48 35 79 / 48%);
+  }
+  .portfolio-theme #contact {
+    --ink: #152e58;
+    --muted: #cddcf5;
+    --accent: #152e58;
+    --accent-dark: #0d1e3b;
+    --accent-soft: #e5efff;
+    --line: #e5efff;
+    --panel-hover: #c8dcff;
+  }
+
+  .portfolio-theme .site-header {
+    border-bottom: 2px solid var(--ink);
+    background: var(--accent-soft);
+    backdrop-filter: none;
+  }
+  .portfolio-theme .site-logo {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .portfolio-theme .section-rail {
+    right: var(--space-5);
+    padding: var(--space-3);
+    border: 2px solid var(--ink);
+    background: var(--accent-soft);
+  }
+  .portfolio-theme .section-rail-link::before { width: 2px; }
+  .portfolio-theme .section-rail-link.is-active::before { width: var(--space-2); }
+
+  .portfolio-theme .section-heading h2 {
+    color: var(--accent-soft);
+    font-family: "PixelMplus12", var(--font);
+    font-size: var(--font-size-36);
+    font-weight: 700;
+    font-synthesis: none;
+    -webkit-text-stroke: 2px var(--ink);
+    paint-order: stroke fill;
+    letter-spacing: 0;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+  .portfolio-theme .section-heading h2:lang(en) {
+    font-family: "Press Start 2P", "PixelMplus12", monospace;
+    font-size: var(--font-size-20);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-wrap: normal;
+  }
+  .portfolio-theme .eyebrow,
+  .portfolio-theme .timeline-period,
+  .portfolio-theme .project-meta {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .portfolio-theme .section-description { line-height: 1.8; }
+  .portfolio-theme .section > .container,
+  .portfolio-theme .section-heading,
+  .portfolio-theme .prose { min-width: 0; }
+  .portfolio-theme .split-layout { grid-template-columns: minmax(0, 1fr); }
+  .portfolio-theme .prose {
+    width: 100%;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+  }
+  .portfolio-theme .lead-text { line-height: 1.8; }
+
+  .portfolio-theme .carousel-button,
+  .portfolio-theme .button,
+  .portfolio-theme .modal-close,
+  .portfolio-theme .back-to-top {
+    border: 0;
+    border-radius: 0;
+    background: var(--accent-soft);
+    color: var(--ink);
+    clip-path: var(--pixel-cut);
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+  .portfolio-theme .carousel-button:hover,
+  .portfolio-theme .carousel-button:focus-visible,
+  .portfolio-theme .modal-close:hover,
+  .portfolio-theme .modal-close:focus-visible {
+    background: var(--ink);
+    color: var(--accent-soft);
+  }
+  .portfolio-theme .button:hover,
+  .portfolio-theme .back-to-top:hover,
+  .portfolio-theme .back-to-top:focus-visible {
+    background: var(--panel-hover);
+    color: var(--ink);
+    transform: none;
+  }
+  .portfolio-theme :is(.carousel-button, .button, .modal-close, .back-to-top):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: calc(var(--space-2) * -1);
+  }
+
+  .portfolio-theme .timeline { scrollbar-color: var(--ink) var(--accent-soft); }
+  .portfolio-theme .timeline-item,
+  .portfolio-theme .project-card,
+  .portfolio-theme .project-dialog {
+    border: 2px solid transparent;
+    /* 12px source/destination corners preserve the SVG's 2px pixel stroke. */
+    border-image-source: var(--pixel-frame);
+    border-image-slice: 12;
+    border-image-width: var(--space-3);
+    border-image-repeat: stretch;
+    border-radius: 0;
+    background: var(--accent-soft);
+    color: var(--ink);
+    clip-path: var(--pixel-frame-cut);
+  }
+  .portfolio-theme .project-card {
+    min-height: 0;
+    transition: background-color 160ms ease;
+  }
+  .portfolio-theme .project-card:hover,
+  .portfolio-theme .project-card:focus-within { background: var(--panel-hover); }
+  .portfolio-theme .project-card-trigger {
+    min-height: var(--space-16);
+    justify-content: center;
+    gap: var(--space-4);
+  }
+  .portfolio-theme .project-card .project-meta {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--space-3);
+  }
+  .portfolio-theme .project-card-title-row {
+    width: 100%;
+    align-items: center;
+    margin-top: 0;
+  }
+  .portfolio-theme .project-card-title { flex: 1; }
+  .portfolio-theme .project-card-trigger:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: var(--space-2);
+  }
+  .portfolio-theme .tag-list li,
+  .portfolio-theme .case-details { border-width: 2px; }
+  .portfolio-theme .tag-list li { border-radius: 0; }
+
+  .portfolio-theme #skills { position: relative; }
+  .portfolio-theme #skills::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: var(--sky-shade);
+    pointer-events: none;
+    content: '';
+  }
+  .portfolio-theme #skills > .container {
+    position: relative;
+    z-index: 1;
+  }
+  .portfolio-theme .section-dark { color: var(--accent-soft); }
+  .portfolio-theme .section-dark .eyebrow,
+  .portfolio-theme .section-dark .section-description,
+  .portfolio-theme .section-dark .skill-card p,
+  .portfolio-theme .skill-line-item { color: var(--accent-soft); }
+  .portfolio-theme .skills-grid {
+    gap: var(--space-8);
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  .portfolio-theme .skill-card {
+    padding: var(--space-6) 0 0;
+    border-top: 2px solid var(--accent-soft);
+    background: transparent;
+  }
+  .portfolio-theme .skill-category { color: var(--accent-soft) !important; }
+  .portfolio-theme .skill-line {
+    height: 2px;
+    background: var(--accent-soft);
+  }
+  .portfolio-theme .skill-line-dot {
+    width: var(--space-2);
+    height: var(--space-2);
+    border: 2px solid var(--accent-soft);
+    border-radius: 0;
+    background: var(--ink);
+  }
+
+  .portfolio-theme.project-modal { background: rgb(71 35 28 / 72%); }
+  .portfolio-theme .project-dialog .project-meta { padding-right: var(--space-14); }
+  .portfolio-theme .project-dialog h3 { line-height: 1.5; }
+  .portfolio-theme .project-dialog .text-link { margin-top: var(--space-8); }
+  .portfolio-theme .footer-inner { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  @media (min-width: 48rem) {
+    .portfolio-theme .section-heading h2 { font-size: var(--font-size-48); }
+    .portfolio-theme .section-heading h2:lang(en) { font-size: var(--font-size-28); }
+    .portfolio-theme .skills-grid { gap: var(--space-12); }
+    .portfolio-theme .split-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: var(--space-12);
+    }
+    .portfolio-theme #about .section-heading h2 { font-size: var(--font-size-40); }
+    .portfolio-theme #about .section-heading h2:lang(en) { font-size: var(--font-size-24); }
+  }
+  @media (min-width: 70rem) {
+    /* Reserve space beside the content for the fixed section navigation. */
+    .portfolio-theme .section > .container {
+      width: min(100% - var(--space-44) * 2, var(--content));
+    }
+    .portfolio-theme .section-heading h2 { font-size: var(--font-size-56); }
+    .portfolio-theme .section-heading h2:lang(en) { font-size: var(--font-size-32); }
+  }
+}
