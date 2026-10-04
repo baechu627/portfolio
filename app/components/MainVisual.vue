@@ -126,6 +126,7 @@ function startEnter() {
           :style="{ left: sparkle.x, top: sparkle.y, '--delay': `${-(index % 4) * 1.5}s` }"
         />
       </div>
+      <LanguageSwitcher class="landing-language-switcher" />
       <div class="landing-topline">
         <div class="landing-identity">
           <div class="landing-meta">
@@ -145,8 +146,6 @@ function startEnter() {
           <p class="landing-description">{{ content.hero.lead }}</p>
         </div>
 
-        <LanguageSwitcher />
-
         <NuxtLink
           class="enter-link"
           :class="{ 'is-entering': isEntering }"
@@ -160,6 +159,7 @@ function startEnter() {
       </div>
 
       <div class="landing-footer">
+        <LanguageSwitcher class="landing-language-switcher-mobile" />
         <p>{{ content.hero.careerPath }}</p>
       </div>
     </section>
