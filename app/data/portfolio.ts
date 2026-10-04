@@ -19,7 +19,6 @@ export interface ProjectDetail {
 
 export interface ProjectLink {
   url: string
-  label: string
 }
 
 export interface Project {
@@ -33,7 +32,6 @@ export interface Project {
 
 export interface SkillGroup {
   title: string
-  description: string
   skills: string[]
   kind: 'professional' | 'learning'
 }
@@ -45,18 +43,15 @@ export const profile = {
   initials: 'BS',
   role: 'Frontend Engineer',
   location: 'Fukuoka, Japan',
-  availability: 'Frontend Engineerとして、新しい機会についてお話しできます',
-  email: 'oomia6027@naver.com',
-  // TODO: 公開するGitHub URLが決まったら追加する。
+  email: 'oomia6027@gmail.com',
 }
 
 export const hero = {
   titleLineOne: 'UI/UXの視点を',
   titleLineTwo: '実装までつなぐ',
-  lead: 'Web DesignerからDesign Engineer、Frontend Engineerへ。UI/UXの知見を活かし、Vue.js / Nuxt.js / TypeScriptで、利用者にとって分かりやすく継続的に改善できるUIを実装します。',
+  lead: 'Web DesignerからDesign Engineer、Frontend Engineerへ。UI/UXの知見を活かし、Vue.js / Nuxt.js / TypeScriptで、分かりやすく保守しやすいUIを実装します。',
   careerPath: 'Web Designer → Design Engineer → Frontend Engineer',
   focus: 'Vue.js / Nuxt.js / TypeScript',
-  experience: 'Web領域で約6年の実務経験',
 }
 
 export const about = {
@@ -107,10 +102,10 @@ export const experiences: Experience[] = [
     period: '2019.03 — 2022.04',
     role: 'Web Designer',
     company: 'LYZON',
-    summary: 'コーポレートサイト、キャンペーンサイト、Landing PageのUI/UXデザイン、コーディング、運用に携わりました。',
+    summary: 'コーポレートサイト、キャンペーンサイト、ランディングページのUI/UXデザイン、コーディング、運用に携わりました。',
     highlights: [
       'WebサイトのUI/UXデザイン、コーディング、運用・更新',
-      'WordPress・Sitecoreを用いたCMSサイトの制作・運用',
+      'Sitecoreを用いたCMSサイトの制作・運用、CMS移行プロジェクトへの参加',
       'ワイヤーフレーム、アイコン、イラスト、ロゴ・バナーなどのデザイン制作',
       '更新性・運用性を考慮したデザイン設計と、関係者との認識合わせ',
     ],
@@ -121,7 +116,7 @@ export const projects: Project[] = [
   {
     title: 'PayPay Card',
     category: 'Frontend Development',
-    description: 'PayPay Cardでの実務経験を、公開可能な範囲で一般化して紹介します。内部の画面、プロジェクト名、コードは掲載していません。',
+    description: 'PayPay Cardでの担当業務の概要を、機密情報を含まない範囲で紹介します。内部の画面、プロジェクト名、コードは掲載していません。',
     details: [
       {
         label: '実装',
@@ -141,7 +136,7 @@ export const projects: Project[] = [
   {
     title: '財形住宅金融株式会社',
     category: 'Web Design / UI・UX',
-    description: 'LYZON在籍時に、UI/UXデザインからコーディングまでを担当した公開可能なランディングページです。',
+    description: 'LYZON在籍時に、UI/UXデザインからコーディングまでを担当したランディングページです。',
     details: [
       {
         label: '担当',
@@ -155,17 +150,16 @@ export const projects: Project[] = [
     technologies: ['Web Design', 'UI/UX', 'HTML', 'CSS'],
     link: {
       url: 'https://design.lyzon.co.jp/case/zaijukin/',
-      label: '公開事例を見る',
     },
   },
   {
     title: 'LYZON',
     category: 'Web Design / SVG Illustration',
-    description: 'LYZON DesignのWebサイトで、ページデザインの一部とイラスト用SVGファイルの制作に参加しました。',
+    description: 'LYZON DesignのWebサイトで、ページデザインの一部とSVGイラストの制作を担当しました。',
     details: [
       {
         label: '担当',
-        text: 'ページデザインの一部、およびイラスト用SVGファイルの制作。',
+        text: 'ページデザインの一部、およびSVGイラストの制作。',
       },
       {
         label: '公開サイト',
@@ -175,12 +169,11 @@ export const projects: Project[] = [
     technologies: ['Web Design', 'SVG Illustration'],
     link: {
       url: 'https://design.lyzon.co.jp/',
-      label: 'サイトを見る',
     },
   },
   {
     title: 'イオンフィナンシャルサービス株式会社',
-    category: 'CMS Construction / Sitecore',
+    category: 'CMS Development / Sitecore',
     description: 'LYZON在籍時に参加した、クレジットカード利用促進キャンペーンサイトおよびコーポレートサイトのCMS構築プロジェクトです。',
     details: [
       {
@@ -192,10 +185,9 @@ export const projects: Project[] = [
         text: 'LYZONの制作実績として、プロジェクト概要と構築内容が公開されています。',
       },
     ],
-    technologies: ['Sitecore', 'CMS Construction', 'Web Design'],
+    technologies: ['Sitecore', 'CMS Development', 'Web Design'],
     link: {
       url: 'https://www.lyzon.co.jp/works/aeon/',
-      label: '公開事例を見る',
     },
   },
   {
@@ -219,7 +211,7 @@ export const projects: Project[] = [
   {
     title: 'Personal Portfolio',
     category: 'Personal Project',
-    description: 'Frontend Engineerとしての考え方と実装品質を伝えるために制作した、one-pageポートフォリオです。',
+    description: 'Frontend Engineerとしての経験と制作事例を紹介するポートフォリオです。',
     details: [
       {
         label: '構成',
@@ -235,32 +227,27 @@ export const projects: Project[] = [
       },
     ],
     technologies: ['Nuxt 4', 'Vue', 'TypeScript', 'CSS', 'npm'],
-    // TODO: 公開GitHub URLを確定後に追加する。
   },
 ]
 
 export const skillGroups: SkillGroup[] = [
   {
     title: 'Frontend',
-    description: '実務で使用しているフロントエンド技術です。',
-    skills: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS / SCSS', 'Pug'],
+    skills: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS / SCSS', 'jQuery'],
     kind: 'professional',
   },
   {
     title: 'Tools / Workflow',
-    description: '日々の開発・デザイン作業で使用しているツールです。',
-    skills: ['Git', 'GitHub', 'Figma', 'Jira / Confluence', 'WordPress', 'Sitecore'],
+    skills: ['Git', 'GitHub', 'Figma', 'Sitecore'],
     kind: 'professional',
   },
   {
     title: 'Design, Testing & UI/UX',
-    description: 'Web DesignerとしてのUI/UX経験と、E2Eテストを含む品質確認の実務経験です。',
     skills: ['Web Design', 'UI/UX', 'Responsive Design', 'E2E Test Scenarios', 'Playwright（一部機能）'],
     kind: 'professional',
   },
   {
     title: 'Learning / Exploring',
-    description: '現在学習・探索している領域です。実務経験としては表示していません。',
     skills: ['React', 'Frontend Testing'],
     kind: 'learning',
   },
@@ -268,21 +255,19 @@ export const skillGroups: SkillGroup[] = [
 
 const profileEnglish = {
   ...profile,
-  availability: 'Open to conversations about new Frontend Engineer opportunities.',
 }
 
 const heroEnglish = {
   titleLineOne: 'Turning UI/UX insight',
   titleLineTwo: 'into implementation',
-  lead: 'From Web Designer to Design Engineer to Frontend Engineer. I bring a UI/UX perspective to Vue.js / Nuxt.js / TypeScript development, building interfaces that are clear for users and ready for continuous improvement.',
+  lead: 'From Web Designer to Design Engineer to Frontend Engineer. I bring a UI/UX perspective to development with Vue.js / Nuxt.js / TypeScript, building clear, maintainable user interfaces.',
   careerPath: 'Web Designer → Design Engineer → Frontend Engineer',
   focus: 'Vue.js / Nuxt.js / TypeScript',
-  experience: 'Around 6 years of professional experience in web development',
 }
 
 const aboutEnglish = {
   title: 'A Frontend Engineer connecting design and development',
-  lead: 'I have expanded my expertise into Frontend Engineering from a foundation in Web Design and UI/UX.',
+  lead: 'My frontend engineering work builds on my background in web design and UI/UX.',
   paragraphs: [
     'I currently work as a Frontend Engineer at PayPay Card, contributing to financial service web application development with Vue.js / Nuxt.js / TypeScript.',
     'By understanding design intent, I design and build UI components and screens with reusability and maintainability in mind, bringing both the user and implementation perspectives to the work.',
@@ -308,7 +293,7 @@ const experiencesEnglish: Experience[] = [
       'Frontend development with Vue.js / Nuxt.js / TypeScript',
       'Design and implementation of reusable, maintainable components',
       'API integration and asynchronous processing, including API specification checks and sequence diagram reviews',
-      'GitHub Pull Request code reviews, E2E scenario review, and Playwright test code for selected features',
+      'GitHub Pull Request code reviews, E2E test scenario creation, and Playwright test code for selected features',
       'Scrum collaboration with Product Managers, designers, and backend engineers to align on requirements',
     ],
   },
@@ -331,9 +316,9 @@ const experiencesEnglish: Experience[] = [
     summary: 'Worked on UI/UX design, coding, and maintenance for corporate websites, campaign sites, and landing pages.',
     highlights: [
       'UI/UX design, coding, operation, and updates for websites',
-      'Production and operation of CMS websites using WordPress and Sitecore',
+      'Development and maintenance of Sitecore websites, including CMS migration projects',
       'Design production including wireframes, icons, illustrations, logos, and banners',
-      'Design planning with updateability and operational needs in mind, aligning understanding with stakeholders',
+      'Designing for maintainability and ongoing updates, while aligning with stakeholders',
     ],
   },
 ]
@@ -342,7 +327,7 @@ const projectsEnglish: Project[] = [
   {
     title: 'PayPay Card',
     category: 'Frontend Development',
-    description: 'A generalized overview of my professional experience at PayPay Card within the scope that can be shared publicly. Internal screens, project names, and source code are not included.',
+    description: 'An overview of my responsibilities at PayPay Card, excluding confidential information. Internal screens, project names, and source code are not included.',
     details: [
       {
         label: 'Implementation',
@@ -350,7 +335,7 @@ const projectsEnglish: Project[] = [
       },
       {
         label: 'Integration & quality',
-        text: 'API integration and asynchronous processing, API specification checks, sequence diagram reviews, E2E scenario review, and Playwright test code for selected features.',
+        text: 'API integration and asynchronous processing, API specification checks, sequence diagram reviews, E2E test scenario creation, and Playwright test code for selected features.',
       },
       {
         label: 'UI/UX',
@@ -376,17 +361,16 @@ const projectsEnglish: Project[] = [
     technologies: ['Web Design', 'UI/UX', 'HTML', 'CSS'],
     link: {
       url: 'https://design.lyzon.co.jp/case/zaijukin/',
-      label: 'View public case study',
     },
   },
   {
     title: 'LYZON',
     category: 'Web Design / SVG Illustration',
-    description: 'I contributed to part of the page design and the production of SVG illustration files for the LYZON Design website.',
+    description: 'I contributed page designs and SVG illustrations to the LYZON Design website.',
     details: [
       {
         label: 'Contribution',
-        text: 'Part of the page design and production of SVG illustration files.',
+        text: 'Design for selected pages and creation of SVG illustrations.',
       },
       {
         label: 'Public website',
@@ -396,13 +380,12 @@ const projectsEnglish: Project[] = [
     technologies: ['Web Design', 'SVG Illustration'],
     link: {
       url: 'https://design.lyzon.co.jp/',
-      label: 'View website',
     },
   },
   {
     title: 'AEON Financial Service',
-    category: 'CMS Construction / Sitecore',
-    description: 'A CMS construction project for a credit card promotion campaign site and corporate site that I joined while at LYZON.',
+    category: 'CMS Development / Sitecore',
+    description: 'A CMS development project for a credit card promotion campaign site and corporate website that I contributed to while at LYZON.',
     details: [
       {
         label: 'Contribution',
@@ -410,13 +393,12 @@ const projectsEnglish: Project[] = [
       },
       {
         label: 'Public case study',
-        text: 'The project overview and construction details are published in LYZON’s works archive.',
+        text: 'The project overview and implementation details are published in LYZON’s works archive.',
       },
     ],
-    technologies: ['Sitecore', 'CMS Construction', 'Web Design'],
+    technologies: ['Sitecore', 'CMS Development', 'Web Design'],
     link: {
       url: 'https://www.lyzon.co.jp/works/aeon/',
-      label: 'View public case study',
     },
   },
   {
@@ -440,7 +422,7 @@ const projectsEnglish: Project[] = [
   {
     title: 'Personal Portfolio',
     category: 'Personal Project',
-    description: 'A one-page portfolio built to communicate my approach and implementation quality as a Frontend Engineer.',
+    description: 'A personal portfolio showcasing my frontend engineering experience and selected work.',
     details: [
       {
         label: 'Structure',
@@ -456,32 +438,27 @@ const projectsEnglish: Project[] = [
       },
     ],
     technologies: ['Nuxt 4', 'Vue', 'TypeScript', 'CSS', 'npm'],
-    // TODO: Add the public GitHub URL once it is confirmed.
   },
 ]
 
 const skillGroupsEnglish: SkillGroup[] = [
   {
     title: 'Frontend',
-    description: 'Frontend technologies I use professionally.',
-    skills: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS / SCSS', 'Pug'],
+    skills: ['Vue.js', 'Nuxt.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS / SCSS', 'jQuery'],
     kind: 'professional',
   },
   {
     title: 'Tools / Workflow',
-    description: 'Tools used in day-to-day development and design work.',
-    skills: ['Git', 'GitHub', 'Figma', 'Jira / Confluence', 'WordPress', 'Sitecore'],
+    skills: ['Git', 'GitHub', 'Figma', 'Sitecore'],
     kind: 'professional',
   },
   {
     title: 'Design, Testing & UI/UX',
-    description: 'UI/UX experience from my Web Designer background and professional quality-check experience including E2E testing.',
     skills: ['Web Design', 'UI/UX', 'Responsive Design', 'E2E Test Scenarios', 'Playwright (selected features)'],
     kind: 'professional',
   },
   {
     title: 'Learning / Exploring',
-    description: 'Areas I am currently learning and exploring. These are not presented as professional experience.',
     skills: ['React', 'Frontend Testing'],
     kind: 'learning',
   },
@@ -511,7 +488,6 @@ export const portfolioContent = {
 export const portfolioUi = {
   ja: {
     languageSelection: '言語を選択',
-    englishComingSoon: '英語版は準備中です',
     enterPortfolio: 'Enter Portfolio',
     mainNavigation: 'メインナビゲーション',
     backToHome: 'メインビジュアルへ',
@@ -525,26 +501,22 @@ export const portfolioUi = {
     experienceAria: '職務経歴',
     projectsEyebrow: '03 / Projects',
     projectsTitle: 'Case Studies',
-    projectsDescription: '課題、担当範囲、成果が分かる形でプロジェクトを紹介します。',
+    projectsDescription: 'これまでに携わった制作・開発・運用の事例を紹介します。',
     technologiesAria: '使用技術',
     skillsEyebrow: '04 / Skills',
     skillsTitle: 'できること',
     skillsDescription: '実務で使用している技術と、現在学習・探索している領域を分けて掲載しています。',
     professionalExperience: 'Professional Experience',
-    learningExploring: 'Learning / Exploring',
     contactEyebrow: '05 / Contact',
     contactTitle: '一緒に、より良い体験をつくりませんか',
     contactDescription: '採用やプロジェクトについて、\nお気軽にご連絡ください。',
     sendEmail: 'メールを送る',
     backToTop: 'ページ上部へ',
     newTab: '（新しいタブで開きます）',
-    previousSlide: '前のカード',
-    nextSlide: '次のカード',
     closeModal: '詳細を閉じる',
   },
   en: {
     languageSelection: 'Select language',
-    englishComingSoon: 'English version',
     enterPortfolio: 'Enter Portfolio',
     mainNavigation: 'Main navigation',
     backToHome: 'Back to home',
@@ -558,21 +530,18 @@ export const portfolioUi = {
     experienceAria: 'Work experience',
     projectsEyebrow: '03 / Projects',
     projectsTitle: 'Case Studies',
-    projectsDescription: 'Selected projects presented with context, contribution, and implementation details.',
+    projectsDescription: 'Selected work in design, development, and website maintenance.',
     technologiesAria: 'Technologies used',
     skillsEyebrow: '04 / Skills',
     skillsTitle: 'What I do',
-    skillsDescription: 'Professional technologies are separated from the areas I am currently learning and exploring.',
+    skillsDescription: 'Technologies I use professionally, alongside areas I am learning and exploring.',
     professionalExperience: 'Professional Experience',
-    learningExploring: 'Learning / Exploring',
     contactEyebrow: '05 / Contact',
     contactTitle: 'Let’s create better experiences together',
     contactDescription: 'Feel free to get in touch about opportunities or projects.',
     sendEmail: 'Send an email',
     backToTop: 'Back to top',
     newTab: '(opens in a new tab)',
-    previousSlide: 'Previous card',
-    nextSlide: 'Next card',
     closeModal: 'Close details',
   },
 } as const

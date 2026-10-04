@@ -34,7 +34,7 @@ const ui = computed(() => portfolioUi[language.value])
             :class="{ 'skill-card-learning': group.kind === 'learning' }"
           >
             <div class="skill-group-heading">
-              <p class="skill-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
+              <p v-if="group.kind === 'professional'" class="skill-category">{{ ui.professionalExperience }}</p>
               <h3>{{ group.title }}</h3>
             </div>
             <ul class="skill-lines" :aria-label="ui.technologiesAria">
