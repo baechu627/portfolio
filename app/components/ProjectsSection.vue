@@ -2,11 +2,11 @@
 import { nextTick, ref } from 'vue'
 import PixelIcon from '~/components/PixelIcon.vue'
 import { containOverflowScroll } from '~/utils/containOverflowScroll'
-import { portfolioContent, portfolioUi, type Project } from '~/data/portfolio'
+import type { Project } from '~/data/portfolio'
+
+const { content, ui } = usePortfolioContent()
 
 const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
 const websiteLinkLabel = computed(() => language.value === 'ja' ? 'サイトを見る' : 'View website')
 const selectedProject = ref<Project | null>(null)
 const modalCloseButton = ref<HTMLButtonElement | null>(null)

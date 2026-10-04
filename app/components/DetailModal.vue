@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { portfolioUi } from '~/data/portfolio'
+const { ui } = usePortfolioContent()
 
 const props = defineProps<{ open: boolean; title: string }>()
 const emit = defineEmits<{ close: [] }>()
 const dialog = ref<HTMLDialogElement | null>(null)
 const titleId = `detail-${useId()}`
-const { language } = usePortfolioLanguage()
-const ui = computed(() => portfolioUi[language.value])
 
 function syncDialog() {
   if (props.open && !dialog.value?.open) dialog.value?.showModal()

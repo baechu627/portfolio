@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi } from '~/data/portfolio'
 import PixelIcon from '~/components/PixelIcon.vue'
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
+
+const { content, ui } = usePortfolioContent()
 
 const emit = defineEmits<{ navigate: [href: string] }>()
 
 const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>

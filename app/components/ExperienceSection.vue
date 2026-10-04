@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi, type Experience } from '~/data/portfolio'
+import type { Experience } from '~/data/portfolio'
 import DetailModal from '~/components/DetailModal.vue'
 import PixelIcon from '~/components/PixelIcon.vue'
 import { containOverflowScroll } from '~/utils/containOverflowScroll'
 
+const { content, ui } = usePortfolioContent()
+
 const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
 const selectedExperience = ref<Experience | null>(null)
 
 </script>

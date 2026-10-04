@@ -53,6 +53,7 @@ export const hero = {
 }
 
 export const about = {
+  summaryBreakAfter: '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた',
   lead: 'Web Design・UI/UXの経験を基盤に、Frontend Engineeringへと専門性を広げてきました。',
   paragraphs: [
     '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた金融サービスのWebアプリケーション開発に携わっています。',
@@ -258,6 +259,7 @@ const heroEnglish = {
 }
 
 const aboutEnglish = {
+  summaryBreakAfter: '',
   lead: 'My frontend engineering work builds on my background in web design and UI/UX.',
   paragraphs: [
     'I currently work as a Frontend Engineer at PayPay Card, contributing to financial service web application development with Vue.js / Nuxt.js / TypeScript.',

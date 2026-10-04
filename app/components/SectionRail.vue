@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi } from '~/data/portfolio'
+const { content, ui } = usePortfolioContent()
 
 defineProps<{ activeSection: string }>()
 const emit = defineEmits<{ navigate: [href: string] }>()
 
-const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>

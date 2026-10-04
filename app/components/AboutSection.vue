@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi } from '~/data/portfolio'
 import DetailModal from '~/components/DetailModal.vue'
 import PixelIcon from '~/components/PixelIcon.vue'
 
+const { content, ui } = usePortfolioContent()
+
 const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
 const summaryLines = computed(() => {
   const paragraph = content.value.about.paragraphs[0] ?? ''
-  const breakAfter = '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた'
+  const breakAfter = content.value.about.summaryBreakAfter
   if (language.value !== 'ja' || !paragraph.startsWith(breakAfter)) return [paragraph]
   return [paragraph.slice(0, breakAfter.length), paragraph.slice(breakAfter.length)]
 })

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi } from '~/data/portfolio'
 import PixelIcon from '~/components/PixelIcon.vue'
 import { AboutSection, ExperienceSection, ProjectsSection, SkillsSection, ContactSection } from '#components'
 
+const { content, ui } = usePortfolioContent()
+
 const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
 const route = useRoute()
 const router = useRouter()
 const scenes = [

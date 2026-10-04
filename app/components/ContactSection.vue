@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi } from '~/data/portfolio'
 import PixelIcon from '~/components/PixelIcon.vue'
 
-const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
+const { content, ui } = usePortfolioContent()
+
 </script>
 
 <template>

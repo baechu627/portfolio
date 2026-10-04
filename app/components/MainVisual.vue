@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { portfolioContent, portfolioUi } from '~/data/portfolio'
 import PixelIcon from '~/components/PixelIcon.vue'
+
+const { content, ui } = useLandingContent()
 
 interface Sparkle {
   x: string
@@ -65,8 +66,36 @@ const smallSparkles: Sparkle[] = [
   { x: '96%', y: '20%', kind: 'rays', desktopOnly: true },
 ]
 const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
-const ui = computed(() => portfolioUi[language.value])
+const route = useRoute()
+const authenticated = useState('portfolio-authenticated', () => false)
+const password = ref('')
+const authError = ref('')
+const passwordInput = ref<HTMLInputElement | null>(null)
+const passwordLabel = computed(() => language.value === 'ja' ? 'パスワード' : 'Password')
+watch(authenticated, value => {
+  if (!value) isEntering.value = false
+})
+
+async function submitPassword() {
+  if (isEntering.value || !password.value) return
+  isEntering.value = true
+  authError.value = ''
+  try {
+    await $fetch('/api/auth/password', { method: 'POST', body: { password: password.value } })
+    password.value = ''
+    const destination = safePortfolioRedirect(route.query.redirect, route.hash)
+    window.location.replace(destination === '/' ? '/portfolio' : destination)
+  } catch (cause) {
+    const invalid = (cause as { statusCode?: number }).statusCode === 401
+    authError.value = language.value === 'ja'
+      ? (invalid ? 'パスワードが違います。もう一度お試しください。' : '現在認証できません。しばらくしてからお試しください。')
+      : (invalid ? 'Incorrect password. Please try again.' : 'Authentication is unavailable. Please try again later.')
+    isEntering.value = false
+    await nextTick()
+    passwordInput.value?.focus()
+    passwordInput.value?.select()
+  }
+}
 
 function startEnter() {
   isEntering.value = true
@@ -137,6 +166,7 @@ function startEnter() {
         </div>
 
         <NuxtLink
+          v-if="authenticated"
           class="enter-link"
           :class="{ 'is-entering': isEntering }"
           to="/portfolio"
@@ -146,6 +176,15 @@ function startEnter() {
           <span>{{ ui.enterPortfolio }}</span>
           <PixelIcon name="arrow-right" class="enter-arrow" />
         </NuxtLink>
+        <form v-else class="landing-access-form" :aria-busy="isEntering" @submit.prevent="submitPassword">
+          <label class="visually-hidden" for="portfolio-password">{{ passwordLabel }}</label>
+          <input id="portfolio-password" ref="passwordInput" v-model="password" type="password" autocomplete="current-password" :placeholder="passwordLabel" required maxlength="1024" :disabled="isEntering" :aria-invalid="!!authError" :aria-describedby="authError ? 'landing-auth-error' : undefined">
+          <p v-if="authError" id="landing-auth-error" class="landing-auth-error" role="alert">{{ authError }}</p>
+          <button class="enter-link" :class="{ 'is-entering': isEntering }" type="submit" :disabled="isEntering || !password">
+            <span>{{ ui.enterPortfolio }}</span>
+            <PixelIcon name="arrow-right" class="enter-arrow" />
+          </button>
+        </form>
       </div>
 
       <div class="landing-footer">

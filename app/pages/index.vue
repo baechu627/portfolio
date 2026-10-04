@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { portfolioContent } from '~/data/portfolio'
+const { content } = useLandingContent()
 
-const { language } = usePortfolioLanguage()
-const content = computed(() => portfolioContent[language.value])
 
 definePageMeta({
   pageTransition: {

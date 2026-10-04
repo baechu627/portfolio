@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { portfolioUi } from '~/data/portfolio'
 
 const { language, setLanguage } = usePortfolioLanguage()
-const ui = computed(() => portfolioUi[language.value])
 </script>
 
 <template>
@@ -10,7 +8,7 @@ const ui = computed(() => portfolioUi[language.value])
     class="language-switcher"
     :class="{ 'is-en': language === 'en' }"
     role="group"
-    :aria-label="ui.languageSelection"
+    :aria-label="language === 'ja' ? '言語を選択' : 'Select language'"
   >
     <button
       type="button"
