@@ -526,7 +526,7 @@
     overscroll-behavior: contain;
     align-content: start;
     padding: 0;
-    scrollbar-width: thin;
+    scrollbar-width: auto;
     scrollbar-color: var(--ink) transparent;
   }
   .scene-stage .project-card { padding: var(--space-4); }
@@ -541,24 +541,78 @@
     overflow-wrap: anywhere;
   }
   .scene-stage .projects-overview .project-meta > span { overflow-wrap: anywhere; }
-  .portfolio-theme .skills-overview {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-4);
-    margin-top: var(--space-6);
+  .scene-stage #skills { height: 100%; min-height: 0; }
+  .scene-stage #skills > .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    min-height: 0;
+    text-align: left;
   }
-  .portfolio-theme .skills-overview .skill-card { padding-top: var(--space-4); }
-  .portfolio-theme .skills-overview .skill-category { font-size: var(--font-size-10); line-height: 1.5; }
-  .portfolio-theme .skills-overview h3 { font-size: var(--font-size-16); margin-top: var(--space-2); }
-  .portfolio-theme .skills-overview .skill-lines {
+  .scene-stage #skills .section-heading {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: none;
+  }
+  .skills-content {
+    flex: 0 1 auto;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    align-self: center;
+    margin-top: var(--space-12);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: auto;
+    scrollbar-color: #ffffff transparent;
+  }
+  .scene-stage #skills .skills-overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    margin-top: 0;
+  }
+  .scene-stage #skills .skills-overview .skill-card {
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  .scene-stage #skills .skills-overview .skill-card-learning {
+    padding-top: var(--space-6);
+    border-top: 2px solid rgb(255 255 255 / 40%);
+  }
+  .scene-stage #skills .skills-overview .skill-category { font-size: var(--font-size-12); line-height: 1.5; }
+  .scene-stage #skills .skills-overview h3 { font-size: var(--font-size-20); margin-top: var(--space-2); }
+  .scene-stage #skills .skills-overview .skill-lines {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-1) var(--space-2);
-    margin-top: var(--space-2);
+    gap: var(--space-3) var(--space-5);
+    margin-top: var(--space-4);
   }
-  .portfolio-theme .skills-overview .skill-line-item {
+  .scene-stage #skills .skills-overview .skill-line-item {
     display: block;
-    font-size: var(--font-size-12);
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid transparent;
+    border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath fill='white' fill-rule='evenodd' d='M8 0H28V4H32V8H36V28H32V32H28V36H8V32H4V28H0V8H4V4H8Z M9 1H27V5H31V9H35V27H31V31H27V35H9V31H5V27H1V9H5V5H9Z'/%3E%3C/svg%3E");
+    border-image-slice: 12;
+    border-image-width: var(--space-3);
+    border-image-repeat: stretch;
+    border-radius: 0;
+    clip-path: var(--pixel-frame-cut);
+    background: transparent;
+    font-size: var(--font-size-16);
     line-height: 1.6;
+  }
+  @media (min-width: 70rem) {
+    .scene-stage #skills .skills-overview .skill-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: center;
+      gap: var(--space-8);
+    }
+    .scene-stage #skills .skills-overview .skill-lines { margin-top: 0; }
+    .scene-stage #about .about-summary-continuation { display: block; }
   }
   .portfolio-theme.detail-dialog {
     position: fixed;
@@ -699,6 +753,7 @@
     gap: var(--space-2);
     padding-inline: var(--space-6);
     isolation: isolate;
+    clip-path: var(--pixel-frame-cut);
     background: #ffffff;
     color: var(--ink);
     overflow: hidden;
@@ -741,7 +796,7 @@
       align-content: start;
       overflow-y: auto;
       overscroll-behavior: contain;
-      scrollbar-width: thin;
+      scrollbar-width: auto;
       scrollbar-color: var(--ink) transparent;
     }
   }
@@ -850,6 +905,13 @@
   @media (min-width: 70rem) {
     /* The right-hand section rail replaces bottom navigation on desktop. */
     .scene-controls { display: none; }
+    .scene-panel { overflow-y: clip; }
+    .scene-stage #projects .projects-overview,
+    .scene-stage #experience .experience-overview,
+    .scene-stage #skills .skills-content {
+      overflow: visible;
+      scrollbar-width: none;
+    }
 
     /* Reserve space beside the content for the fixed section navigation. */
     .portfolio-theme .section > .container {
@@ -878,5 +940,35 @@
       margin-top: 0;
       gap: var(--space-6);
     }
+  }
+
+  /* Fit desktop content to shorter windows instead of introducing an inner scroll. */
+  @media (min-width: 70rem) and (max-height: 48rem) {
+    .scene-stage .section { padding-block: var(--space-3); }
+    .scene-stage #projects .projects-overview { gap: var(--space-3); }
+    .scene-stage #projects .project-card { padding: var(--space-3) var(--space-4); }
+    .scene-stage #projects .project-card-trigger { min-height: var(--space-8); }
+    .scene-stage #skills .skills-content { margin-top: var(--space-6); }
+    .scene-stage #skills .skills-overview { gap: var(--space-4); }
+    .scene-stage #skills .skills-overview .skill-card-learning { padding-top: var(--space-4); }
+    .scene-stage #skills .skills-overview .skill-lines { gap: var(--space-2); }
+    .scene-stage #skills .skills-overview .skill-line-item {
+      font-size: var(--font-size-14);
+      padding: var(--space-half) var(--space-2);
+    }
+    .scene-stage #skills .skill-group-heading h3 { font-size: var(--font-size-18); }
+  }
+  @media (min-width: 70rem) and (max-height: 40rem) {
+    .scene-panel:not(.is-contact) {
+      top: var(--space-16);
+      bottom: var(--space-12);
+      height: calc(100% - var(--space-16) - var(--space-12));
+    }
+    .scene-stage #projects .projects-overview { gap: var(--space-2); }
+    .scene-stage #projects .project-card { padding-block: var(--space-2); }
+    .scene-stage #projects .project-card-trigger { min-height: var(--space-7); }
+    .scene-stage #projects .project-meta { font-size: var(--font-size-10); }
+    .scene-stage #projects .project-card-title { font-size: var(--font-size-14); }
+    .scene-stage #skills .section-heading h2 { font-size: var(--font-size-40); }
   }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import PixelIcon from '~/components/PixelIcon.vue'
+import { containOverflowScroll } from '~/utils/containOverflowScroll'
 import { portfolioContent, portfolioUi, type Project } from '~/data/portfolio'
 
 const { language } = usePortfolioLanguage()
@@ -34,10 +35,10 @@ function closeProject() {
         role="region"
         :aria-label="ui.projectsTitle"
         tabindex="0"
-        @wheel.stop
-        @touchstart.stop
-        @touchend.stop
-        @keydown.stop
+        @wheel="containOverflowScroll"
+        @touchstart="containOverflowScroll"
+        @touchend="containOverflowScroll"
+        @keydown="containOverflowScroll"
       >
         <ProjectCard
           v-for="(project, index) in content.projects"

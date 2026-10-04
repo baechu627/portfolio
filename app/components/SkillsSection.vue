@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { portfolioContent, portfolioUi } from '~/data/portfolio'
-import DetailModal from '~/components/DetailModal.vue'
-import PixelIcon from '~/components/PixelIcon.vue'
+import { containOverflowScroll } from '~/utils/containOverflowScroll'
 
 const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
-const detailsOpen = ref(false)
 </script>
 
 <template>
@@ -18,33 +16,35 @@ const detailsOpen = ref(false)
         :title="ui.skillsTitle"
         :description="ui.skillsDescription"
       />
-      <div class="skills-grid skills-overview">
-        <article
-          v-for="group in content.skillGroups"
-          :key="group.title"
-          class="skill-card"
-          :class="{ 'skill-card-learning': group.kind === 'learning' }"
-        >
-          <p class="skill-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
-          <h3>{{ group.title }}</h3>
-          <ul class="skill-lines" :aria-label="ui.technologiesAria">
-            <li v-for="skill in group.skills" :key="skill" class="skill-line-item">
-              <span>{{ skill }}</span>
-            </li>
-          </ul>
-        </article>
+      <div
+        class="skills-content"
+        role="region"
+        :aria-label="ui.skillsTitle"
+        tabindex="0"
+        @wheel="containOverflowScroll"
+        @touchstart="containOverflowScroll"
+        @touchend="containOverflowScroll"
+        @keydown="containOverflowScroll"
+      >
+        <div class="skills-grid skills-overview">
+          <article
+            v-for="group in content.skillGroups"
+            :key="group.title"
+            class="skill-card"
+            :class="{ 'skill-card-learning': group.kind === 'learning' }"
+          >
+            <div class="skill-group-heading">
+              <p class="skill-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
+              <h3>{{ group.title }}</h3>
+            </div>
+            <ul class="skill-lines" :aria-label="ui.technologiesAria">
+              <li v-for="skill in group.skills" :key="skill" class="skill-line-item">
+                <span>{{ skill }}</span>
+              </li>
+            </ul>
+          </article>
+        </div>
       </div>
-      <button class="summary-link" type="button" aria-haspopup="dialog" @click="detailsOpen = true">{{ language === 'ja' ? '経験・学習について' : 'About my experience & learning' }} <PixelIcon name="modal" /></button>
     </div>
   </section>
-  <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="ui.skillsTitle" @close="detailsOpen = false">
-    <section v-for="group in content.skillGroups" :key="group.title" class="modal-content-block">
-      <h4>{{ group.title }}</h4>
-      <p class="modal-category">{{ group.kind === 'professional' ? ui.professionalExperience : ui.learningExploring }}</p>
-      <ul class="tag-list" :aria-label="ui.technologiesAria">
-        <li v-for="skill in group.skills" :key="skill">{{ skill }}</li>
-      </ul>
-      <p>{{ group.description }}</p>
-    </section>
-  </DetailModal>
 </template>

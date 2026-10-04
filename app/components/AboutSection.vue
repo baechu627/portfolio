@@ -6,6 +6,12 @@ import PixelIcon from '~/components/PixelIcon.vue'
 const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
+const summaryLines = computed(() => {
+  const paragraph = content.value.about.paragraphs[0] ?? ''
+  const breakAfter = '現在はPayPay CardでFrontend Engineerとして、Vue.js / Nuxt.js / TypeScriptを用いた'
+  if (language.value !== 'ja' || !paragraph.startsWith(breakAfter)) return [paragraph]
+  return [paragraph.slice(0, breakAfter.length), paragraph.slice(breakAfter.length)]
+})
 const detailsOpen = ref(false)
 const detailHeadings = computed(() => language.value === 'ja'
   ? ['現在の仕事', 'UI実装で大切にしていること', 'チームとの連携']
@@ -22,7 +28,7 @@ const detailHeadings = computed(() => language.value === 'ja'
       />
       <div class="prose about-summary">
         <p class="lead-text">{{ content.about.lead }}</p>
-        <p>{{ content.about.paragraphs[0] }}</p>
+        <p><span v-for="(line, index) in summaryLines" :key="index" :class="{ 'about-summary-continuation': index > 0 }">{{ line }}</span></p>
         <button class="summary-link" type="button" aria-haspopup="dialog" @click="detailsOpen = true">{{ language === 'ja' ? '詳しく見る' : 'Read more' }} <PixelIcon name="modal" /></button>
       </div>
     </div>

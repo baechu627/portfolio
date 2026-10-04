@@ -2,15 +2,13 @@
 import { portfolioContent, portfolioUi, type Experience } from '~/data/portfolio'
 import DetailModal from '~/components/DetailModal.vue'
 import PixelIcon from '~/components/PixelIcon.vue'
+import { containOverflowScroll } from '~/utils/containOverflowScroll'
 
 const { language } = usePortfolioLanguage()
 const content = computed(() => portfolioContent[language.value])
 const ui = computed(() => portfolioUi[language.value])
 const selectedExperience = ref<Experience | null>(null)
 
-function onListInteraction(event: Event) {
-  if (window.matchMedia('(max-width: 69.99rem)').matches) event.stopPropagation()
-}
 </script>
 
 <template>
@@ -26,10 +24,10 @@ function onListInteraction(event: Event) {
         class="timeline experience-overview"
         :aria-label="ui.experienceAria"
         tabindex="0"
-        @wheel="onListInteraction"
-        @touchstart="onListInteraction"
-        @touchend="onListInteraction"
-        @keydown="onListInteraction"
+        @wheel="containOverflowScroll"
+        @touchstart="containOverflowScroll"
+        @touchend="containOverflowScroll"
+        @keydown="containOverflowScroll"
       >
         <li v-for="experience in content.experiences" :key="`${experience.period}-${experience.role}`" class="timeline-item">
           <button class="experience-trigger" type="button" aria-haspopup="dialog" @click="selectedExperience = experience">
