@@ -948,8 +948,10 @@
     font-size: var(--font-size-20);
     line-height: 1;
   }
-  .modal-close:hover,
   .modal-close:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+  @media (hover: hover) and (pointer: fine) {
+    .modal-close:hover { border-color: var(--accent); background: var(--accent-soft); }
+  }
   .project-modal-enter-active,
   .project-modal-leave-active { transition: opacity 180ms ease; }
   .project-modal-enter-active .project-dialog,

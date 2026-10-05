@@ -34,6 +34,7 @@ function syncDialog() {
   if (props.open && !dialog.value?.open) {
     startIntro()
     dialog.value?.showModal()
+    dialog.value?.focus({ preventScroll: true })
   } else if (!props.open) {
     stopIntro()
     if (dialog.value?.open) dialog.value.close()
@@ -46,9 +47,9 @@ onBeforeUnmount(stopIntro)
 
 <template>
   <Teleport to="body">
-    <dialog ref="dialog" class="portfolio-theme project-dialog detail-dialog" :class="{ 'about-profile-dialog': !!$slots.profile }" :hidden="!open" :aria-labelledby="titleId" @close="stopIntro(); emit('close')">
+    <dialog ref="dialog" class="portfolio-theme project-dialog detail-dialog" :class="{ 'about-profile-dialog': !!$slots.profile }" :hidden="!open" :aria-labelledby="titleId" tabindex="-1" autofocus @close="stopIntro(); emit('close')">
       <template v-if="open">
-        <button type="button" class="modal-close" :aria-label="ui.closeModal" autofocus @click="dialog?.close()">×</button>
+        <button type="button" class="modal-close" :aria-label="ui.closeModal" @click="dialog?.close()">×</button>
         <div v-if="$slots.profile" v-show="!activeGreeting" class="about-profile-header"><slot name="profile" /></div>
         <h3 :id="titleId" :class="{ 'visually-hidden': !!activeGreeting }">{{ title }}</h3>
         <div v-if="activeGreeting" class="about-greeting-intro" aria-live="polite" aria-atomic="true">

@@ -145,10 +145,15 @@
     clip-path: var(--pixel-cut);
     transition: background-color 160ms ease, color 160ms ease;
   }
-  .portfolio-theme .modal-close:hover,
   .portfolio-theme .modal-close:focus-visible {
     background: var(--ink);
     color: var(--accent-soft);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .portfolio-theme .modal-close:hover {
+      background: var(--ink);
+      color: var(--accent-soft);
+    }
   }
   .portfolio-theme .button:hover,
   .portfolio-theme .back-to-top:hover,
@@ -620,9 +625,6 @@
   .about-personal-details dt { font-size: var(--font-size-12); font-weight: 700; color: var(--muted); }
   .about-personal-details dd { font-size: var(--font-size-14); line-height: 1.6; white-space: pre-line; }
   .portfolio-theme.about-profile-dialog .modal-intro { white-space: pre-line; line-height: 1.8; }
-  .portfolio-theme.about-profile-dialog .about-personal-details + .modal-content-block {
-    border-top: 0;
-  }
   @media (max-width: 47.99rem) {
     .about-profile-avatar { width: 128px; height: 128px; }
   }
@@ -675,6 +677,11 @@
     margin-top: var(--space-8);
     padding-top: var(--space-6);
     border-top: 2px solid rgb(20 44 75 / 12%);
+  }
+  .project-dialog :is(.modal-facts, .about-personal-details) + .modal-content-block {
+    border-top: 0;
+    padding-top: 0;
+    margin-top: var(--space-6);
   }
   .project-dialog .modal-content-block h4 {
     display: flex;

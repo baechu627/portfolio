@@ -9,11 +9,11 @@ const { content, ui } = usePortfolioContent()
 const { language } = usePortfolioLanguage()
 const websiteLinkLabel = computed(() => language.value === 'ja' ? 'サイトを見る' : 'View website')
 const selectedProject = ref<Project | null>(null)
-const modalCloseButton = ref<HTMLButtonElement | null>(null)
+const modalDialog = ref<HTMLDivElement | null>(null)
 
 function openProject(project: Project) {
   selectedProject.value = project
-  nextTick(() => modalCloseButton.value?.focus())
+  nextTick(() => modalDialog.value?.focus({ preventScroll: true }))
 }
 
 function closeProject() {
@@ -61,6 +61,7 @@ function closeProject() {
         @keydown.esc="closeProject"
       >
         <div
+          ref="modalDialog"
           class="project-dialog"
           role="dialog"
           aria-modal="true"
@@ -68,7 +69,6 @@ function closeProject() {
           tabindex="-1"
         >
           <button
-            ref="modalCloseButton"
             type="button"
             class="modal-close"
             :aria-label="ui.closeModal"
