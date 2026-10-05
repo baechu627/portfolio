@@ -36,7 +36,7 @@ const detailHeadings = computed(() => language.value === 'ja'
       <div class="prose about-summary">
         <p class="lead-text">{{ content.about.lead }}</p>
         <p><span v-for="(line, index) in summaryLines" :key="index" :class="{ 'about-summary-continuation': index > 0 }">{{ line }}</span></p>
-        <button class="summary-link" type="button" aria-haspopup="dialog" @click="openDetails">{{ language === 'ja' ? '詳しく見る' : 'Read more' }} <PixelIcon name="modal" /></button>
+        <button class="summary-link" type="button" aria-haspopup="dialog" @click="openDetails">{{ language === 'ja' ? '私について' : 'About me' }} <PixelIcon name="modal" /></button>
       </div>
     </div>
   </section>
