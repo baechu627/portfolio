@@ -33,6 +33,7 @@ let wheelTotal = 0
 let lastWheelAt = 0
 let wheelConsumed = false
 let touchStartY = 0
+let touchLastY = 0
 let touchStartX = 0
 let touchAtTop = false
 let touchAtBottom = false
@@ -87,9 +88,33 @@ function onTouchStart(event: TouchEvent) {
   const touch = event.touches[0]
   if (!touch) return
   touchStartY = touch.clientY
+  touchLastY = touch.clientY
   touchStartX = touch.clientX
   touchAtTop = !!panel.value && panel.value.scrollTop <= 2
   touchAtBottom = !!panel.value && panel.value.scrollTop + panel.value.clientHeight >= panel.value.scrollHeight - 2
+}
+
+function onTouchMove(event: TouchEvent) {
+  // Keep native scrolling inside overflowing content, but block page bounce.
+  // Do not prevent two-finger gestures such as pinch-to-zoom.
+  if (event.touches.length !== 1) return
+  const touch = event.touches[0]
+  if (!touch) return
+  const delta = touchLastY - touch.clientY
+  touchLastY = touch.clientY
+  let element = event.target instanceof Element ? event.target : null
+
+  while (element && !element.classList.contains('scene-stage')) {
+    if (element instanceof HTMLElement) {
+      const overflow = getComputedStyle(element).overflowY
+      if (['auto', 'scroll'].includes(overflow)
+        && element.scrollHeight > element.clientHeight + 2
+        && canScroll(element, delta)) return
+    }
+    element = element.parentElement
+  }
+
+  if (event.cancelable) event.preventDefault()
 }
 
 function onTouchEnd(event: TouchEvent) {
@@ -138,6 +163,7 @@ definePageMeta({
 
 useHead(() => ({
   title: 'Portfolio',
+  htmlAttrs: { class: 'portfolio-viewport-locked' },
   meta: [{ name: 'description', content: content.value.hero.lead }],
 }))
 </script>
@@ -147,7 +173,7 @@ useHead(() => ({
     <a class="skip-link" href="#main-content">{{ ui.skipToContent }}</a>
     <AppHeader @navigate="navigateToHref" />
     <SectionRail :active-section="`#${scene.id}`" @navigate="navigateToHref" />
-    <main id="main-content" class="scene-stage" tabindex="-1" @wheel="onWheel" @touchstart.passive="onTouchStart" @touchend.passive="onTouchEnd">
+    <main id="main-content" class="scene-stage" tabindex="-1" @wheel="onWheel" @touchstart.capture.passive="onTouchStart" @touchmove="onTouchMove" @touchend.passive="onTouchEnd">
       <Transition name="scene-background">
         <picture :key="scene.id" class="scene-background" :class="{ 'is-skills': scene.id === 'skills' }" aria-hidden="true">
           <source media="(max-width: 47.99rem)" :srcset="`/images/section-bg-${scene.image}-sp.webp`" />

@@ -1,4 +1,19 @@
 @layer components {
+  /* Lock only the portfolio page; landing inputs and modal scrolling stay usable. */
+  html.portfolio-viewport-locked {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  html.portfolio-viewport-locked body {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
   /* Shared with the teleported case-study modal. */
   .portfolio-theme {
     --ink: #142c4b;
