@@ -2,6 +2,13 @@
 import PixelIcon from '~/components/PixelIcon.vue'
 
 const { content, ui } = useLandingContent()
+const descriptionLines = computed(() => {
+  const { lead, desktopBreakAfter } = content.value.hero
+  const index = lead.indexOf(desktopBreakAfter)
+  if (index < 0) return [lead]
+  const boundary = index + desktopBreakAfter.length
+  return [lead.slice(0, boundary), lead.slice(boundary)]
+})
 
 interface Sparkle {
   x: string
@@ -178,7 +185,7 @@ function startEnter() {
             <span>{{ content.hero.titleLineOne }}</span>
             <span>{{ content.hero.titleLineTwo }}</span>
           </h1>
-          <p class="landing-description">{{ content.hero.lead }}</p>
+          <p class="landing-description"><template v-for="(line, index) in descriptionLines" :key="index"><br v-if="index > 0" class="landing-description-break">{{ line }}</template></p>
         </div>
 
         <NuxtLink

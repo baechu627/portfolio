@@ -631,8 +631,35 @@
   .about-greeting-intro {
     display: grid;
     place-items: center;
-    min-height: 16rem;
+    min-height: 0;
+    padding: var(--space-8) var(--space-10);
+    background: #ffffff;
+    clip-path: var(--pixel-cut);
     text-align: center;
+  }
+  .portfolio-theme.detail-dialog.is-greeting {
+    width: min(calc(100% - var(--space-12)), 24rem);
+    padding: 0;
+    border: 0;
+    border-image: none;
+    background: transparent;
+    clip-path: none;
+    overflow: visible;
+  }
+  .detail-dialog.is-greeting::after {
+    position: absolute;
+    top: calc(100% - 2px);
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 16px;
+    background: #ffffff;
+    clip-path: polygon(0 0, 100% 0, 100% 4px, 75% 4px, 75% 8px, 50% 8px, 50% 12px, 25% 12px, 25% 16px, 0 16px);
+    content: '';
+    pointer-events: none;
+  }
+  @media (max-width: 47.99rem) {
+    .portfolio-theme.detail-dialog.is-greeting { width: min(calc(100% - var(--space-12)), 16rem); }
+    .about-greeting-intro { padding: var(--space-5) var(--space-6); }
   }
   .about-greeting-intro p {
     font-family: "Noto Sans JP", "Noto Sans", sans-serif;

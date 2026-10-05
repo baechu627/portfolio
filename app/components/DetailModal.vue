@@ -13,6 +13,20 @@ const greetings = [
 const greetingIndex = ref(greetings.length)
 const activeGreeting = computed(() => greetings[greetingIndex.value])
 let greetingTimer: ReturnType<typeof setTimeout> | undefined
+let pointerStartedOutside = false
+
+function isOutsideDialog(event: MouseEvent | PointerEvent) {
+  const element = dialog.value
+  if (!element || event.target !== element) return false
+  const bounds = element.getBoundingClientRect()
+  return event.clientX < bounds.left || event.clientX > bounds.right
+    || event.clientY < bounds.top || event.clientY > bounds.bottom
+}
+
+function onDialogClick(event: MouseEvent) {
+  if (pointerStartedOutside && isOutsideDialog(event)) dialog.value?.close()
+  pointerStartedOutside = false
+}
 
 function stopIntro() {
   clearTimeout(greetingTimer)
@@ -47,9 +61,9 @@ onBeforeUnmount(stopIntro)
 
 <template>
   <Teleport to="body">
-    <dialog ref="dialog" class="portfolio-theme project-dialog detail-dialog" :class="{ 'about-profile-dialog': !!$slots.profile }" :hidden="!open" :aria-labelledby="titleId" tabindex="-1" autofocus @close="stopIntro(); emit('close')">
+    <dialog ref="dialog" class="portfolio-theme project-dialog detail-dialog" :class="{ 'about-profile-dialog': !!$slots.profile, 'is-greeting': !!activeGreeting }" :hidden="!open" :aria-labelledby="titleId" tabindex="-1" autofocus @pointerdown="pointerStartedOutside = isOutsideDialog($event)" @pointercancel="pointerStartedOutside = false" @click="onDialogClick" @close="stopIntro(); emit('close')">
       <template v-if="open">
-        <button type="button" class="modal-close" :aria-label="ui.closeModal" @click="dialog?.close()">×</button>
+        <button v-if="!activeGreeting" type="button" class="modal-close" :aria-label="ui.closeModal" @click="dialog?.close()">×</button>
         <div v-if="$slots.profile" v-show="!activeGreeting" class="about-profile-header"><slot name="profile" /></div>
         <h3 :id="titleId" :class="{ 'visually-hidden': !!activeGreeting }">{{ title }}</h3>
         <div v-if="activeGreeting" class="about-greeting-intro" aria-live="polite" aria-atomic="true">

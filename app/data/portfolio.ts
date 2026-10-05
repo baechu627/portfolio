@@ -46,6 +46,7 @@ export const profile = {
 }
 
 export const hero = {
+  desktopBreakAfter: 'Frontend Engineerへ。',
   titleLineOne: 'UI/UXの視点を',
   titleLineTwo: '実装までつなぐ',
   lead: 'Web DesignerからDesign Engineer、Frontend Engineerへ。UI/UXの知見を活かし、Vue.js / Nuxt.js / TypeScriptで、分かりやすく保守しやすいUIを実装します。',
@@ -258,6 +259,7 @@ export const skillGroups: SkillGroup[] = [
 ]
 
 const heroEnglish = {
+  desktopBreakAfter: 'Frontend Engineer. ',
   titleLineOne: 'Turning UI/UX insight',
   titleLineTwo: 'into implementation',
   lead: 'From Web Designer to Design Engineer to Frontend Engineer. I bring a UI/UX perspective to development with Vue.js / Nuxt.js / TypeScript, building clear, maintainable user interfaces.',

@@ -214,8 +214,8 @@
     --landing-frame-space: var(--space-5);
     --landing-frame-block-space: var(--space-5);
     --landing-copy-space: var(--space-5);
-    --landing-copy-gap: var(--space-10);
-    --landing-message-gap: var(--space-6);
+    --landing-copy-gap: var(--space-12);
+    --landing-message-gap: var(--space-8);
     --ink: #142c4b;
     --muted: #243d5b;
     --accent: #142c4b;
@@ -468,6 +468,10 @@
   .landing-description:lang(en) {
     font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   }
+  .landing-description-break { display: none; }
+  @media (min-width: 70rem) {
+    .landing-description-break { display: initial; }
+  }
   .language-switcher {
     position: relative;
     isolation: isolate;
@@ -690,10 +694,10 @@
   @media (max-width: 47.99rem) and (max-height: 50rem) {
     .landing.is-locked {
       --landing-copy-space: var(--space-2);
-      --landing-message-gap: var(--space-4);
+      --landing-message-gap: var(--space-6);
     }
     .landing.is-locked .landing-copy {
-      gap: var(--space-3);
+      gap: var(--space-5);
       justify-content: safe center;
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -701,6 +705,10 @@
     .landing.is-locked .landing-copy > * { flex-shrink: 0; }
     .landing.is-locked .landing-access-form { gap: var(--space-4); }
     .landing.is-locked .landing-footer { gap: var(--space-4); }
+  }
+  @media (max-width: 47.99rem) and (max-height: 40rem) {
+    .landing.is-locked { --landing-message-gap: var(--space-5); }
+    .landing.is-locked .landing-copy { gap: var(--space-4); }
   }
   .enter-link:focus-visible {
     background: var(--ink);
@@ -1052,7 +1060,7 @@
       --landing-title-en-size: var(--font-size-36);
       --landing-frame-space: var(--space-6);
       --landing-copy-space: var(--space-8);
-      --landing-copy-gap: var(--space-12);
+      --landing-copy-gap: var(--space-14);
     }
   }
 
@@ -1069,8 +1077,8 @@
       --landing-description-size: var(--font-size-18);
       --landing-frame-space: var(--space-8);
       --landing-copy-space: var(--space-10);
-      --landing-copy-gap: var(--space-14);
-      --landing-message-gap: var(--space-6);
+      --landing-copy-gap: var(--space-16);
+      --landing-message-gap: var(--space-8);
     }
     .landing-sparkle { --sparkle-scale: 1.25; }
     .landing-sparkle.sparkle-small { --sparkle-scale: 0.75; }
@@ -1103,7 +1111,7 @@
       --landing-frame-space: var(--space-10);
       --landing-frame-block-space: var(--space-6);
       --landing-copy-space: var(--space-4);
-      --landing-copy-gap: var(--space-12);
+      --landing-copy-gap: var(--space-14);
     }
     .landing-shell {
       grid-template-rows: auto minmax(0, 1fr) auto;
@@ -1136,7 +1144,7 @@
       --landing-title-size: var(--font-size-104);
       --landing-title-en-size: var(--font-size-84);
       --landing-frame-space: var(--space-12);
-      --landing-copy-gap: var(--space-14);
+      --landing-copy-gap: var(--space-16);
     }
   }
 
@@ -1154,8 +1162,8 @@
       --landing-title-en-size: var(--font-size-64);
       --landing-frame-block-space: var(--space-4);
       --landing-copy-space: var(--space-2);
-      --landing-copy-gap: var(--space-4);
-      --landing-message-gap: var(--space-4);
+      --landing-copy-gap: var(--space-6);
+      --landing-message-gap: var(--space-6);
     }
   }
 
@@ -1166,6 +1174,31 @@
       --landing-description-size: var(--font-size-16);
       --landing-copy-gap: var(--space-8);
     }
+  }
+
+  /* Once authenticated, the removed password form leaves room for a looser layout. */
+  .landing:not(.is-locked) .landing-copy {
+    gap: calc(var(--landing-copy-gap) + var(--space-4));
+  }
+  .landing:not(.is-locked) .landing-message {
+    gap: calc(var(--landing-message-gap) + var(--space-2));
+  }
+  @media (min-width: 48rem) and (min-height: 48.01rem) {
+    .landing:not(.is-locked) .landing-copy {
+      gap: calc(var(--landing-copy-gap) + var(--space-8));
+    }
+    .landing:not(.is-locked) .landing-message {
+      gap: calc(var(--landing-message-gap) + var(--space-4));
+    }
+  }
+  @media (max-height: 40rem) {
+    .landing:not(.is-locked) .landing-copy {
+      gap: calc(var(--landing-copy-gap) + var(--space-2));
+    }
+  }
+  @media (max-width: 47.99rem) {
+    .landing:not(.is-locked) .landing-copy { gap: var(--landing-copy-gap); }
+    .landing:not(.is-locked) .landing-message { gap: var(--landing-message-gap); }
   }
 
   @media (prefers-reduced-motion: reduce) {
