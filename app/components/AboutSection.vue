@@ -12,6 +12,14 @@ const summaryLines = computed(() => {
   return [paragraph.slice(0, breakAfter.length), paragraph.slice(breakAfter.length)]
 })
 const detailsOpen = ref(false)
+const greetingPlayed = useState('about-greeting-played', () => false)
+const playGreeting = ref(false)
+
+function openDetails() {
+  playGreeting.value = !greetingPlayed.value
+  greetingPlayed.value = true
+  detailsOpen.value = true
+}
 const detailHeadings = computed(() => language.value === 'ja'
   ? ['現在の仕事', 'UI実装で大切にしていること', 'チームとの連携']
   : ['Current work', 'My approach to UI implementation', 'Team collaboration'])
@@ -28,11 +36,11 @@ const detailHeadings = computed(() => language.value === 'ja'
       <div class="prose about-summary">
         <p class="lead-text">{{ content.about.lead }}</p>
         <p><span v-for="(line, index) in summaryLines" :key="index" :class="{ 'about-summary-continuation': index > 0 }">{{ line }}</span></p>
-        <button class="summary-link" type="button" aria-haspopup="dialog" @click="detailsOpen = true">{{ language === 'ja' ? '詳しく見る' : 'Read more' }} <PixelIcon name="modal" /></button>
+        <button class="summary-link" type="button" aria-haspopup="dialog" @click="openDetails">{{ language === 'ja' ? '詳しく見る' : 'Read more' }} <PixelIcon name="modal" /></button>
       </div>
     </div>
   </section>
-  <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="content.profile.name" greeting-intro @close="detailsOpen = false">
+  <DetailModal v-if="detailsOpen" :open="detailsOpen" :title="content.profile.name" :greeting-intro="playGreeting" @close="detailsOpen = false">
     <template #profile>
       <div class="about-profile-avatar">
         <img src="/images/about-profile.webp" width="640" height="640" decoding="async" :alt="language === 'ja' ? 'プロフィール用のピクセルアートキャラクター' : 'Pixel-art profile character'">
