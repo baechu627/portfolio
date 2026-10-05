@@ -11,6 +11,7 @@ definePageMeta({
 
 useHead(() => ({
   title: content.value.profile.role,
+  htmlAttrs: { class: 'landing-viewport-locked' },
   meta: [{ name: 'description', content: content.value.hero.lead }],
 }))
 </script>

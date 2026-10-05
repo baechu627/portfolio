@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PixelIcon from '~/components/PixelIcon.vue'
+import { containTouchScroll } from '~/utils/containTouchScroll'
 
 const { content, ui } = useLandingContent()
 const descriptionLines = computed(() => {
@@ -18,6 +19,19 @@ const password = ref('')
 const passwordVisible = ref(false)
 const authError = ref('')
 const passwordInput = ref<HTMLInputElement | null>(null)
+let touchLastY = 0
+
+function onTouchStart(event: TouchEvent) {
+  const touch = event.touches[0]
+  if (touch) touchLastY = touch.clientY
+}
+
+function onTouchMove(event: TouchEvent) {
+  containTouchScroll(event, touchLastY)
+  const touch = event.touches[0]
+  if (touch) touchLastY = touch.clientY
+}
+
 const passwordLabel = computed(() => language.value === 'ja' ? 'パスワード' : 'Password')
 const passwordPlaceholder = computed(() => language.value === 'ja'
   ? 'ここにパスワードを入力してください'
@@ -65,7 +79,13 @@ function startEnter() {
 </script>
 
 <template>
-  <main class="landing" :class="{ 'is-locked': !authenticated }" aria-labelledby="landing-title">
+  <main
+    class="landing"
+    :class="{ 'is-locked': !authenticated }"
+    aria-labelledby="landing-title"
+    @touchstart.capture.passive="onTouchStart"
+    @touchmove="onTouchMove"
+  >
     <picture>
       <source
         media="(max-width: 47.99rem)"

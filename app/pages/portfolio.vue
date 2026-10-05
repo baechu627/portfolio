@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PixelIcon from '~/components/PixelIcon.vue'
+import { containTouchScroll } from '~/utils/containTouchScroll'
 import { AboutSection, ExperienceSection, ProjectsSection, SkillsSection, ContactSection } from '#components'
 
 const { content, ui } = usePortfolioContent()
@@ -95,26 +96,9 @@ function onTouchStart(event: TouchEvent) {
 }
 
 function onTouchMove(event: TouchEvent) {
-  // Keep native scrolling inside overflowing content, but block page bounce.
-  // Do not prevent two-finger gestures such as pinch-to-zoom.
-  if (event.touches.length !== 1) return
+  containTouchScroll(event, touchLastY)
   const touch = event.touches[0]
-  if (!touch) return
-  const delta = touchLastY - touch.clientY
-  touchLastY = touch.clientY
-  let element = event.target instanceof Element ? event.target : null
-
-  while (element && !element.classList.contains('scene-stage')) {
-    if (element instanceof HTMLElement) {
-      const overflow = getComputedStyle(element).overflowY
-      if (['auto', 'scroll'].includes(overflow)
-        && element.scrollHeight > element.clientHeight + 2
-        && canScroll(element, delta)) return
-    }
-    element = element.parentElement
-  }
-
-  if (event.cancelable) event.preventDefault()
+  if (touch) touchLastY = touch.clientY
 }
 
 function onTouchEnd(event: TouchEvent) {
