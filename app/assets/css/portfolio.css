@@ -285,6 +285,7 @@
   .portfolio-theme .footer-inner { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
   .scene-portfolio {
+    --scene-footer-height: var(--space-16);
     position: relative;
     height: 100vh;
     height: 100svh;
@@ -375,6 +376,9 @@
     flex-shrink: 0;
     margin-top: auto;
     padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .scene-stage .contact-footer .footer-inner {
+    min-height: var(--scene-footer-height);
   }
   .portfolio-theme .summary-link,
   .portfolio-theme .text-link {
@@ -833,6 +837,14 @@
     .scene-stage #contact { --contact-display-size: var(--font-size-48); }
   }
   @media (max-width: 69.99rem) {
+    .scene-stage .section,
+    .scene-stage .contact-inner {
+      padding-block: 0;
+    }
+    .scene-panel:not(.is-contact) {
+      bottom: calc(var(--scene-footer-height) + env(safe-area-inset-bottom, 0px));
+      height: calc(100% - var(--space-20) - var(--scene-footer-height) - env(safe-area-inset-bottom, 0px));
+    }
     .scene-stage #experience { height: 100%; min-height: 0; }
     .scene-stage #experience > .container {
       display: flex;
@@ -872,12 +884,14 @@
     position: absolute;
     z-index: 20;
     right: var(--space-4);
-    bottom: var(--space-4);
+    bottom: 0;
     left: var(--space-4);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
+    min-height: calc(var(--scene-footer-height) + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     margin: 0;
     overflow: visible;
     pointer-events: none;
