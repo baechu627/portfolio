@@ -8,7 +8,6 @@ const { content, ui } = usePortfolioContent()
 
 const { language } = usePortfolioLanguage()
 const selectedExperience = ref<Experience | null>(null)
-
 </script>
 
 <template>

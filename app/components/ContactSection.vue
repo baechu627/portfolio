@@ -2,7 +2,6 @@
 import PixelIcon from '~/components/PixelIcon.vue'
 
 const { content, ui } = usePortfolioContent()
-
 </script>
 
 <template>

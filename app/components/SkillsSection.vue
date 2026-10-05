@@ -2,7 +2,6 @@
 import { containOverflowScroll } from '~/utils/containOverflowScroll'
 
 const { content, ui } = usePortfolioContent()
-
 </script>
 
 <template>

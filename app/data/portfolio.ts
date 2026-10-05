@@ -486,9 +486,7 @@ export const portfolioContent = {
 
 export const portfolioUi = {
   ja: {
-    languageSelection: '言語を選択',
     enterPortfolio: 'Enter Portfolio',
-    mainNavigation: 'メインナビゲーション',
     backToHome: 'メインビジュアルへ',
     sectionNavigation: 'セクションナビゲーション',
     skipToContent: '本文へ移動',
@@ -515,9 +513,7 @@ export const portfolioUi = {
     closeModal: '詳細を閉じる',
   },
   en: {
-    languageSelection: 'Select language',
     enterPortfolio: 'Enter Portfolio',
-    mainNavigation: 'Main navigation',
     backToHome: 'Back to home',
     sectionNavigation: 'Section navigation',
     skipToContent: 'Skip to content',

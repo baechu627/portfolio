@@ -1,7 +1,11 @@
 <script setup lang="ts">
 const { ui } = usePortfolioContent()
 
-const props = defineProps<{ open: boolean; title: string; greetingIntro?: boolean }>()
+const props = defineProps<{
+  open: boolean
+  title: string
+  greetingIntro?: boolean
+}>()
 const emit = defineEmits<{ close: [] }>()
 const dialog = ref<HTMLDialogElement | null>(null)
 const titleId = `detail-${useId()}`
@@ -26,6 +30,11 @@ function isOutsideDialog(event: MouseEvent | PointerEvent) {
 function onDialogClick(event: MouseEvent) {
   if (pointerStartedOutside && isOutsideDialog(event)) dialog.value?.close()
   pointerStartedOutside = false
+}
+
+function onDialogClose() {
+  stopIntro()
+  emit('close')
 }
 
 function stopIntro() {
@@ -61,17 +70,33 @@ onBeforeUnmount(stopIntro)
 
 <template>
   <Teleport to="body">
-    <dialog ref="dialog" class="portfolio-theme project-dialog detail-dialog" :class="{ 'about-profile-dialog': !!$slots.profile, 'is-greeting': !!activeGreeting }" :hidden="!open" :aria-labelledby="titleId" tabindex="-1" autofocus @pointerdown="pointerStartedOutside = isOutsideDialog($event)" @pointercancel="pointerStartedOutside = false" @click="onDialogClick" @close="stopIntro(); emit('close')">
+    <dialog
+      ref="dialog"
+      class="portfolio-theme project-dialog detail-dialog"
+      :class="{ 'about-profile-dialog': !!$slots.profile, 'is-greeting': !!activeGreeting }"
+      :hidden="!open"
+      :aria-labelledby="titleId"
+      tabindex="-1"
+      autofocus
+      @pointerdown="pointerStartedOutside = isOutsideDialog($event)"
+      @pointercancel="pointerStartedOutside = false"
+      @click="onDialogClick"
+      @close="onDialogClose"
+    >
       <template v-if="open">
         <button v-if="!activeGreeting" type="button" class="modal-close" :aria-label="ui.closeModal" @click="dialog?.close()">×</button>
-        <div v-if="$slots.profile" v-show="!activeGreeting" class="about-profile-header"><slot name="profile" /></div>
+        <div v-if="$slots.profile" v-show="!activeGreeting" class="about-profile-header">
+          <slot name="profile" />
+        </div>
         <h3 :id="titleId" :class="{ 'visually-hidden': !!activeGreeting }">{{ title }}</h3>
         <div v-if="activeGreeting" class="about-greeting-intro" aria-live="polite" aria-atomic="true">
           <Transition name="about-greeting" mode="out-in" appear>
             <p :key="activeGreeting.lang" :lang="activeGreeting.lang">{{ activeGreeting.text }}</p>
           </Transition>
         </div>
-        <div v-else class="detail-dialog-content" :class="{ 'about-intro-content': greetingIntro }"><slot /></div>
+        <div v-else class="detail-dialog-content" :class="{ 'about-intro-content': greetingIntro }">
+          <slot />
+        </div>
       </template>
     </dialog>
   </Teleport>

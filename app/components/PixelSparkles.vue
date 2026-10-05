@@ -13,6 +13,7 @@ const companionPatterns = [
   [{ x: '20px', y: '4px', kind: 'diamond' }, { x: '4px', y: '20px', kind: 'ring' }],
   [{ x: '-12px', y: '-20px', kind: 'ring' }, { x: '-20px', y: '12px', kind: 'rays' }],
 ]
+
 const sparkles: Sparkle[] = [
   // Each timing group spans both sides and the upper, middle, and lower areas.
   { x: '18%', y: '18%', kind: 'rays' },
@@ -40,6 +41,7 @@ const sparkles: Sparkle[] = [
   { x: '95%', y: '34%', kind: 'rays', desktopOnly: true },
   { x: '95%', y: '88%', kind: 'ring', desktopOnly: true },
 ]
+
 const smallSparkles: Sparkle[] = [
   { x: '12%', y: '12%', kind: 'diamond' },
   { x: '43%', y: '18%', kind: 'rays' },
@@ -63,29 +65,28 @@ const smallSparkles: Sparkle[] = [
 </script>
 
 <template>
-<div class="landing-sparkles" aria-hidden="true">
-        <span
-          v-for="(sparkle, index) in sparkles"
-          :key="index"
-          class="landing-sparkle"
-          :class="[`sparkle-${sparkle.kind}`, { 'sparkle-desktop-only': sparkle.desktopOnly }]"
-          :style="{ left: sparkle.x, top: sparkle.y, '--delay': `${-(index % 3) * 3}s` }"
-        >
-          <span
-            v-for="(companion, companionIndex) in (sparkle.desktopOnly ? [] : companionPatterns[index % companionPatterns.length])"
-            :key="companionIndex"
-            class="sparkle-companion"
-            :class="`sparkle-${companion.kind}`"
-            :style="{ left: companion.x, top: companion.y }"
-          />
-        </span>
-        <span
-          v-for="(sparkle, index) in smallSparkles"
-          :key="`small-${index}`"
-          class="landing-sparkle sparkle-small"
-          :class="[`sparkle-${sparkle.kind}`, { 'sparkle-desktop-only': sparkle.desktopOnly }]"
-          :style="{ left: sparkle.x, top: sparkle.y, '--delay': `${-(index % 4) * 1.5}s` }"
-        />
-      </div>
+  <div class="landing-sparkles" aria-hidden="true">
+    <span
+      v-for="(sparkle, index) in sparkles"
+      :key="index"
+      class="landing-sparkle"
+      :class="[`sparkle-${sparkle.kind}`, { 'sparkle-desktop-only': sparkle.desktopOnly }]"
+      :style="{ left: sparkle.x, top: sparkle.y, '--delay': `${-(index % 3) * 3}s` }"
+    >
+      <span
+        v-for="(companion, companionIndex) in (sparkle.desktopOnly ? [] : companionPatterns[index % companionPatterns.length])"
+        :key="companionIndex"
+        class="sparkle-companion"
+        :class="`sparkle-${companion.kind}`"
+        :style="{ left: companion.x, top: companion.y }"
+      />
+    </span>
+    <span
+      v-for="(sparkle, index) in smallSparkles"
+      :key="`small-${index}`"
+      class="landing-sparkle sparkle-small"
+      :class="[`sparkle-${sparkle.kind}`, { 'sparkle-desktop-only': sparkle.desktopOnly }]"
+      :style="{ left: sparkle.x, top: sparkle.y, '--delay': `${-(index % 4) * 1.5}s` }"
+    />
+  </div>
 </template>
-

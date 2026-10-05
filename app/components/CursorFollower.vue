@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
 const cursor = ref<HTMLSpanElement | null>(null)
 let animationFrame = 0
 let pointerX = 0

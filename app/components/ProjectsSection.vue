@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { nextTick, ref } from 'vue'
 import PixelIcon from '~/components/PixelIcon.vue'
 import { containOverflowScroll } from '~/utils/containOverflowScroll'
 import type { Project } from '~/data/portfolio'
@@ -96,7 +95,7 @@ function closeProject() {
           <section v-if="selectedProject.technologies.length" class="modal-content-block">
             <h4>{{ language === 'ja' ? '使用技術・ツール' : 'Technologies & tools' }}</h4>
             <ul class="tag-list" :aria-label="ui.technologiesAria">
-            <li v-for="technology in selectedProject.technologies" :key="technology">{{ technology }}</li>
+              <li v-for="technology in selectedProject.technologies" :key="technology">{{ technology }}</li>
             </ul>
           </section>
           <a

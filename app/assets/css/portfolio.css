@@ -57,9 +57,6 @@
     --accent-dark: #0d1e3b;
   }
 
-  .portfolio-theme .site-header {
-    backdrop-filter: none;
-  }
   .portfolio-theme .site-logo {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
@@ -101,8 +98,6 @@
     font-size: var(--font-size-36);
     font-weight: 700;
     font-synthesis: none;
-    -webkit-text-stroke: 0;
-    paint-order: stroke fill;
     letter-spacing: var(--letter-spacing-title);
     line-height: 1.2;
     overflow-wrap: anywhere;
@@ -110,7 +105,6 @@
   }
   .portfolio-theme :is(#about, #experience, #projects) .section-heading h2 {
     color: var(--ink);
-    -webkit-text-stroke: 0;
   }
   .portfolio-theme .section-heading h2:lang(en) {
     font-family: "Noto Sans", "Noto Sans JP", sans-serif;
@@ -237,10 +231,6 @@
   .portfolio-theme .project-card-trigger:focus-visible {
     background: var(--panel-hover);
   }
-  .portfolio-theme .tag-list li,
-  .portfolio-theme .case-details { border-width: 2px; }
-  .portfolio-theme .tag-list li { border-radius: 0; }
-
   .portfolio-theme #skills { position: relative; }
   .portfolio-theme #skills > .container {
     position: relative;

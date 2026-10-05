@@ -845,9 +845,7 @@
   }
   .project-card-title-row {
     display: flex;
-    align-items: baseline;
     gap: var(--space-3);
-    margin-top: var(--space-7);
   }
   .project-card-title {
     font-size: var(--font-size-22);
@@ -867,10 +865,6 @@
   .project-description { margin-top: var(--space-4); color: var(--muted); }
   .case-details {
     display: grid;
-    gap: var(--space-4);
-    margin-top: var(--space-8);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--line);
   }
   .case-details dd { margin-top: var(--space-1); font-size: var(--font-size-14); line-height: 1.65; }
   .tag-list {
@@ -882,8 +876,7 @@
   }
   .tag-list li {
     padding: var(--space-1) var(--space-3);
-    border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 0;
     font-size: var(--font-size-12);
     font-weight: 650;
   }
@@ -932,9 +925,6 @@
     max-height: calc(100svh - var(--space-8));
     overflow-y: auto;
     padding: var(--dialog-space);
-    border: 1px solid var(--ink);
-    border-radius: 1.25rem;
-    background: #f8fbf9;
     color: var(--ink);
   }
   .project-dialog h3 { margin-top: var(--space-4); font-size: var(--dialog-title-size); line-height: 1.2; }
@@ -947,18 +937,11 @@
     width: var(--space-11);
     height: var(--space-11);
     place-items: center;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    background: transparent;
     color: var(--ink);
     cursor: pointer;
     font: inherit;
     font-size: var(--font-size-20);
     line-height: 1;
-  }
-  .modal-close:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
-  @media (hover: hover) and (pointer: fine) {
-    .modal-close:hover { border-color: var(--accent); background: var(--accent-soft); }
   }
   .project-modal-enter-active,
   .project-modal-leave-active { transition: opacity 180ms ease; }
