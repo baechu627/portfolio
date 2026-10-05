@@ -2,6 +2,7 @@
 import { containOverflowScroll } from '~/utils/containOverflowScroll'
 
 const { content, ui } = usePortfolioContent()
+const { scrollArea, hintVisible, hintStyle } = useScrollHint()
 </script>
 
 <template>
@@ -14,6 +15,7 @@ const { content, ui } = usePortfolioContent()
         :description="ui.skillsDescription"
       />
       <div
+        ref="scrollArea"
         class="skills-content"
         role="region"
         :aria-label="ui.skillsTitle"
@@ -44,4 +46,5 @@ const { content, ui } = usePortfolioContent()
       </div>
     </div>
   </section>
+  <ScrollHintArrow :visible="hintVisible" :position="hintStyle" />
 </template>

@@ -5,6 +5,7 @@ import PixelIcon from '~/components/PixelIcon.vue'
 import { containOverflowScroll } from '~/utils/containOverflowScroll'
 
 const { content, ui } = usePortfolioContent()
+const { scrollArea, hintVisible, hintStyle } = useScrollHint()
 
 const { language } = usePortfolioLanguage()
 const selectedExperience = ref<Experience | null>(null)
@@ -20,6 +21,7 @@ const selectedExperience = ref<Experience | null>(null)
         :description="ui.experienceDescription"
       />
       <ol
+        ref="scrollArea"
         class="timeline experience-overview"
         :aria-label="ui.experienceAria"
         tabindex="0"
@@ -39,6 +41,7 @@ const selectedExperience = ref<Experience | null>(null)
       </ol>
     </div>
   </section>
+  <ScrollHintArrow :visible="hintVisible" :position="hintStyle" />
   <DetailModal v-if="selectedExperience" :open="!!selectedExperience" :title="selectedExperience.role" @close="selectedExperience = null">
     <template v-if="selectedExperience">
       <dl class="modal-facts">

@@ -4,6 +4,7 @@ import { containOverflowScroll } from '~/utils/containOverflowScroll'
 import type { Project } from '~/data/portfolio'
 
 const { content, ui } = usePortfolioContent()
+const { scrollArea, hintVisible, hintStyle } = useScrollHint()
 
 const { language } = usePortfolioLanguage()
 const websiteLinkLabel = computed(() => language.value === 'ja' ? 'サイトを見る' : 'View website')
@@ -30,6 +31,7 @@ function closeProject() {
         :description="ui.projectsDescription"
       />
       <div
+        ref="scrollArea"
         class="project-grid projects-overview"
         role="region"
         :aria-label="ui.projectsTitle"
@@ -49,6 +51,7 @@ function closeProject() {
       </div>
     </div>
   </section>
+  <ScrollHintArrow :visible="hintVisible" :position="hintStyle" />
 
   <Teleport to="body">
     <Transition name="project-modal">
